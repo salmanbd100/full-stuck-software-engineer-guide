@@ -1,0 +1,257 @@
+# Event Loop
+
+## Concept
+
+The **Event Loop** is the mechanism that allows JavaScript to perform non-blocking operations despite being single-threaded. It coordinates the execution of code, collection of events, and execution of queued sub-tasks.
+
+### Key Points
+- JavaScript is single-threaded but non-blocking
+- Call stack executes synchronous code
+- Web APIs handle async operations
+- Task Queue (macrotasks) and Microtask Queue handle async callbacks
+- Event loop continuously checks and moves tasks to call stack
+
+---
+
+## Example 1: Event Loop Execution Order
+
+```javascript
+console.log('1. Script start');
+
+setTimeout(() => {
+    console.log('2. setTimeout');
+}, 0);
+
+Promise.resolve().then(() => {
+    console.log('3. Promise');
+});
+
+console.log('4. Script end');
+
+// Output:
+// 1. Script start
+// 4. Script end
+// 3. Promise
+// 2. setTimeout
+```
+
+**Execution Order:**
+1. Synchronous code runs first (console.log 1, 4)
+2. Microtasks run (Promise)
+3. Macrotasks run (setTimeout)
+
+---
+
+## Example 2: Call Stack and Queues
+
+```javascript
+function first() {
+    console.log('First');
+    second();
+    console.log('First again');
+}
+
+function second() {
+    console.log('Second');
+}
+
+setTimeout(() => console.log('Timeout'), 0);
+
+Promise.resolve().then(() => console.log('Promise'));
+
+first();
+
+// Output:
+// First
+// Second
+// First again
+// Promise
+// Timeout
+
+// Call Stack visualization:
+// 1. first() pushed
+// 2. console.log('First')
+// 3. second() pushed
+// 4. console.log('Second')
+// 5. second() popped
+// 6. console.log('First again')
+// 7. first() popped
+// 8. Stack empty - check microtask queue
+// 9. Execute Promise callback
+// 10. Check macrotask queue
+// 11. Execute setTimeout callback
+```
+
+---
+
+## Example 3: Microtasks vs Macrotasks
+
+```javascript
+// Macrotasks (Task Queue)
+setTimeout(() => console.log('setTimeout 1'), 0);
+setInterval(() => console.log('setInterval'), 1000);
+// setImmediate (Node.js only)
+
+// Microtasks (Microtask Queue)
+Promise.resolve().then(() => console.log('Promise 1'));
+queueMicrotask(() => console.log('queueMicrotask'));
+
+// Microtasks always run before macrotasks
+Promise.resolve().then(() => {
+    console.log('Promise 2');
+    setTimeout(() => console.log('setTimeout 2'), 0);
+});
+
+setTimeout(() => {
+    console.log('setTimeout 3');
+    Promise.resolve().then(() => console.log('Promise 3'));
+}, 0);
+
+// Output:
+// Promise 1
+// queueMicrotask
+// Promise 2
+// setTimeout 1
+// setTimeout 3
+// Promise 3
+// setTimeout 2
+```
+
+---
+
+## Common Pitfalls
+
+### Pitfall 1: setTimeout(fn, 0) is not immediate
+
+```javascript
+console.log('Start');
+
+setTimeout(() => {
+    console.log('Timeout');
+}, 0); // Not immediate! Goes to macrotask queue
+
+Promise.resolve().then(() => {
+    console.log('Promise');
+});
+
+console.log('End');
+
+// Output: Start, End, Promise, Timeout
+// setTimeout is delayed until after microtasks
+```
+
+### Pitfall 2: Blocking the Event Loop
+
+```javascript
+// BAD - Blocks event loop
+function blockingOperation() {
+    const start = Date.now();
+    while (Date.now() - start < 3000) {
+        // Blocks for 3 seconds
+    }
+    console.log('Done');
+}
+
+// UI freezes, no other code can run
+blockingOperation();
+
+// GOOD - Non-blocking with async
+async function nonBlockingOperation() {
+    await new Promise(resolve => setTimeout(resolve, 3000));
+    console.log('Done');
+}
+
+nonBlockingOperation(); // Doesn't block
+```
+
+---
+
+## Best Practices
+
+### 1. Use Microtasks for High Priority Work
+
+```javascript
+// High priority - use Promise/queueMicrotask
+queueMicrotask(() => {
+    updateUI(); // Runs before next render
+});
+
+// Lower priority - use setTimeout
+setTimeout(() => {
+    analytics.track(); // Can wait
+}, 0);
+```
+
+### 2. Avoid Long-Running Synchronous Code
+
+```javascript
+// BAD
+function processLargeArray(arr) {
+    return arr.map(item => expensiveOperation(item));
+}
+
+// GOOD - Split into chunks
+async function processLargeArrayAsync(arr, chunkSize = 100) {
+    const results = [];
+
+    for (let i = 0; i < arr.length; i += chunkSize) {
+        const chunk = arr.slice(i, i + chunkSize);
+        results.push(...chunk.map(expensiveOperation));
+
+        // Yield to event loop
+        await new Promise(resolve => setTimeout(resolve, 0));
+    }
+
+    return results;
+}
+```
+
+---
+
+## Real-world Scenarios
+
+### Scenario 1: React State Updates
+
+```javascript
+function Component() {
+    const [count, setCount] = useState(0);
+
+    const handleClick = () => {
+        console.log('1. Click handler start');
+
+        setCount(count + 1); // Batched, not immediate
+
+        console.log('2. Count:', count); // Still old value!
+
+        setTimeout(() => {
+            console.log('3. Timeout count:', count); // Updated value
+        }, 0);
+
+        Promise.resolve().then(() => {
+            console.log('4. Promise count:', count); // Still old value
+        });
+
+        console.log('5. Click handler end');
+    };
+
+    // Output when clicked:
+    // 1. Click handler start
+    // 2. Count: 0 (old value)
+    // 5. Click handler end
+    // 4. Promise count: 0 (old value - microtask)
+    // (React re-renders)
+    // 3. Timeout count: 1 (new value - macrotask)
+}
+```
+
+---
+
+## External Resources
+
+- [MDN: Event Loop](https://developer.mozilla.org/en-US/docs/Web/JavaScript/EventLoop)
+- [JavaScript.info: Event Loop](https://javascript.info/event-loop)
+- [Loupe: Event Loop Visualizer](http://latentflip.com/loupe/)
+
+---
+
+[← Back to JavaScript](./README.md) | [Next: ES6+ Features →](./08-es6-features.md)
