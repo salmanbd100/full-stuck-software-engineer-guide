@@ -7,6 +7,9 @@ Proper error handling is crucial for building robust applications. Understanding
 ### 1. Try/Catch/Finally
 
 **Basic Structure**
+
+**Try/Catch/Finally Blocks** - Fundamental error handling structure: try executes code, catch handles errors, finally always runs for cleanup.
+
 ```javascript
 try {
     // Code that might throw an error
@@ -22,6 +25,9 @@ try {
 ```
 
 **Practical Example**
+
+**Safe JSON Parsing** - Wraps risky operations like JSON.parse in try/catch, returning structured success/error objects instead of throwing.
+
 ```javascript
 function parseJSON(jsonString) {
     try {
@@ -40,6 +46,9 @@ console.log(result2); // { success: false, error: '...' }
 ```
 
 **Finally Block**
+
+**Resource Cleanup** - Finally block ensures cleanup code (like closing files) always executes, regardless of success or error.
+
 ```javascript
 function readFile(filename) {
     let file;
@@ -63,6 +72,9 @@ function readFile(filename) {
 ### 2. Throwing Errors
 
 **throw Statement**
+
+**Throwing Custom Errors** - Creates and throws Error objects with custom messages to signal exceptional conditions in code.
+
 ```javascript
 function divide(a, b) {
     if (b === 0) {
@@ -79,6 +91,9 @@ try {
 ```
 
 **Custom Error Messages**
+
+**Specific Error Types** - Uses built-in error types (TypeError, RangeError) for specific error conditions, making errors more descriptive.
+
 ```javascript
 function validateAge(age) {
     if (typeof age !== 'number') {
@@ -107,6 +122,9 @@ try {
 ### 3. Error Types
 
 **Built-in Error Types**
+
+**JavaScript Error Hierarchy** - Built-in error types (Error, SyntaxError, ReferenceError, TypeError, RangeError, URIError) for different error scenarios.
+
 ```javascript
 // Error - Generic error
 throw new Error('Something went wrong');
@@ -144,6 +162,8 @@ try {
 ```
 
 ### 4. Custom Error Classes
+
+**Creating Custom Errors** - Extends Error class to create domain-specific error types with custom properties and methods.
 
 ```javascript
 // Custom error class
@@ -187,6 +207,9 @@ try {
 ```
 
 **More Advanced Custom Errors**
+
+**Rich Error Objects** - Custom error classes with additional context (statusCode, endpoint, timestamp) and serialization methods.
+
 ```javascript
 class APIError extends Error {
     constructor(message, statusCode, endpoint) {
@@ -234,6 +257,9 @@ try {
 ### 5. Async Error Handling
 
 **Promises**
+
+**Promise Error Handling** - Handles promise rejections with catch() method, throwing errors for HTTP failures and re-throwing when needed.
+
 ```javascript
 function fetchData() {
     return fetch('/api/data')
@@ -255,6 +281,9 @@ function fetchData() {
 ```
 
 **Async/Await**
+
+**Async Error Handling with Try/Catch** - Uses try/catch blocks with async/await for cleaner error handling than promise chains.
+
 ```javascript
 async function fetchUser(id) {
     try {
@@ -294,6 +323,9 @@ async function loadDashboard() {
 ```
 
 **Promise.allSettled() - Handle Multiple Promises**
+
+**Resilient Parallel Operations** - Promise.allSettled waits for all promises to settle (resolve or reject), handling mixed success/failure gracefully.
+
 ```javascript
 async function fetchMultipleUsers(ids) {
     const promises = ids.map(id => fetchUser(id));
@@ -317,6 +349,8 @@ console.log(`Failed to load ${failed.length} users`);
 ```
 
 ### 6. Error Boundaries (React)
+
+**React Error Boundaries** - React component that catches JavaScript errors in child component tree, displaying fallback UI and logging errors.
 
 ```javascript
 // React Error Boundary Component
@@ -366,6 +400,9 @@ function App() {
 ### Q1: What's the difference between throw and return?
 
 **Answer:**
+
+**throw vs return** - return for normal values (caller checks), throw for exceptional cases (interrupts flow, must be caught).
+
 ```javascript
 // return - normal flow control
 function divide1(a, b) {
@@ -398,6 +435,9 @@ try {
 ### Q2: How do you handle errors in async code?
 
 **Answer: Three approaches**
+
+**Async Error Handling Patterns** - Three ways to handle async errors: catch() with promises, try/catch with async/await, or wrapper functions.
+
 ```javascript
 // 1. .catch() with promises
 fetch('/api/data')
@@ -437,6 +477,9 @@ const fetchUser = asyncHandler(async (id) => {
 ### Q3: What happens if you don't catch an error?
 
 **Answer:**
+
+**Unhandled Errors** - Uncaught errors crash programs; uncaught promise rejections can be caught with global handlers.
+
 ```javascript
 // Uncaught error crashes the program
 function riskyOperation() {
@@ -467,6 +510,8 @@ window.addEventListener('unhandledrejection', (event) => {
 ## 💡 Practical Examples
 
 ### Example 1: Retry Logic
+
+**Automatic Retry with Backoff** - Retries failed operations with exponential backoff delays, handling transient failures gracefully.
 
 ```javascript
 async function fetchWithRetry(url, maxRetries = 3) {
@@ -506,6 +551,8 @@ try {
 ```
 
 ### Example 2: Input Validation
+
+**Validation with Custom Errors** - Uses custom ValidationError for input validation, providing clear error messages for each validation rule.
 
 ```javascript
 class Validator {
@@ -564,6 +611,8 @@ function registerUser(email, password) {
 
 ### Example 3: Graceful Degradation
 
+**Fallback Strategy** - Implements fallback chain (API → Cache → Default) for resilient data fetching with graceful degradation.
+
 ```javascript
 class DataService {
     async getData() {
@@ -611,6 +660,8 @@ console.log(data);
 
 ### 1. Swallowing Errors
 
+**Silent Failures** - Empty catch blocks hide errors; always log or handle errors appropriately to maintain visibility.
+
 ```javascript
 // Bad: Silent failure
 try {
@@ -629,6 +680,8 @@ try {
 ```
 
 ### 2. Not Re-throwing When Needed
+
+**Error Propagation** - Log errors locally but re-throw when callers need to handle them, maintaining error flow through the call stack.
 
 ```javascript
 // Bad: Error not propagated
@@ -655,6 +708,8 @@ async function processDataCorrect() {
 ```
 
 ### 3. Forgetting Async Error Handling
+
+**Unhandled Promise Rejections** - Always handle async function rejections with catch() or try/catch to prevent unhandled rejection warnings.
 
 ```javascript
 // Bad: Unhandled promise rejection

@@ -15,6 +15,8 @@ TypeScript provides two main ways to define object shapes: **interfaces** and **
 
 ## Example 1: Interface Basics
 
+**Basic Interface Definition** - Defines contracts for object shapes with properties, including optional and readonly modifiers.
+
 ```typescript
 // Basic interface
 interface User {
@@ -34,6 +36,9 @@ const user: User = {
 
 // user.createdAt = new Date(); // Error: readonly property
 
+**Interface with Methods** - Interfaces can define method signatures that implementing objects must provide.
+
+```typescript
 // Interface with methods
 interface Calculator {
     add(a: number, b: number): number;
@@ -44,7 +49,11 @@ const calc: Calculator = {
     add: (a, b) => a + b,
     subtract: (a, b) => a - b
 };
+```
 
+**Interface with Function Type** - Describes function signatures using call signature syntax.
+
+```typescript
 // Interface with function type
 interface SearchFunc {
     (query: string, limit: number): string[];
@@ -54,7 +63,11 @@ const searchUsers: SearchFunc = (query, limit) => {
     // Implementation
     return [];
 };
+```
 
+**Interface with Index Signature** - Allows objects to have dynamic properties with specified key and value types.
+
+```typescript
 // Interface with index signature
 interface StringMap {
     [key: string]: string;
@@ -64,7 +77,11 @@ const colors: StringMap = {
     primary: '#007bff',
     secondary: '#6c757d'
 };
+```
 
+**Extending Interfaces** - Interfaces can extend other interfaces to inherit their properties and add new ones.
+
+```typescript
 // Extending interfaces
 interface Person {
     name: string;
@@ -82,7 +99,11 @@ const employee: Employee = {
     employeeId: 'E123',
     department: 'Engineering'
 };
+```
 
+**Multiple Inheritance** - Interfaces can extend multiple interfaces simultaneously using comma-separated list.
+
+```typescript
 // Multiple inheritance
 interface Timestamped {
     createdAt: Date;
@@ -98,6 +119,8 @@ interface Product extends Person, Timestamped {
 
 ## Example 2: Type Aliases
 
+**Basic Type Aliases** - Create reusable type definitions using the type keyword for primitives, unions, or complex types.
+
 ```typescript
 // Basic type alias
 type UserID = string | number;
@@ -107,7 +130,11 @@ type User = {
     name: string;
     email: string;
 };
+```
 
+**Union Types** - Allow values to be one of several types using the | operator.
+
+```typescript
 // Union types
 type Status = 'pending' | 'approved' | 'rejected';
 
@@ -122,7 +149,11 @@ type Error = {
     success: false;
     error: string;
 };
+```
 
+**Intersection Types** - Combine multiple types using the & operator to create types with all properties.
+
+```typescript
 // Intersection types
 type Timestamped = {
     createdAt: Date;
@@ -142,24 +173,40 @@ const person: TimestampedPerson = {
     createdAt: new Date(),
     updatedAt: new Date()
 };
+```
 
+**Function Types** - Define function signatures using type aliases for reusable function patterns.
+
+```typescript
 // Function types
 type AddFunction = (a: number, b: number) => number;
 
 const add: AddFunction = (a, b) => a + b;
+```
 
+**Type Aliases for Primitives** - Create descriptive names for primitive types and utility type combinations.
+
+```typescript
 // Type aliases for primitives
 type ID = string;
 type Callback = () => void;
 type Nullable<T> = T | null;
+```
 
+**Tuple Types** - Define fixed-length arrays with specific types for each position.
+
+```typescript
 // Tuple types
 type Point = [number, number];
 type RGB = [number, number, number];
 
 const point: Point = [10, 20];
 const color: RGB = [255, 0, 0];
+```
 
+**Mapped Types** - Transform properties of existing types programmatically using key remapping.
+
+```typescript
 // Mapped types (only with type)
 type Readonly<T> = {
     readonly [P in keyof T]: T[P];

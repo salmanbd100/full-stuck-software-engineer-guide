@@ -15,6 +15,8 @@ The **Event Loop** is the mechanism that allows JavaScript to perform non-blocki
 
 ## Example 1: Event Loop Execution Order
 
+**Execution Order: Sync, Microtasks, Macrotasks** - Demonstrates the event loop's execution order: synchronous code first, then microtasks (promises), then macrotasks (setTimeout).
+
 ```javascript
 console.log('1. Script start');
 
@@ -43,6 +45,8 @@ console.log('4. Script end');
 ---
 
 ## Example 2: Call Stack and Queues
+
+**Call Stack Visualization** - Shows how the call stack processes synchronous code, then the event loop moves tasks from queues to the stack.
 
 ```javascript
 function first() {
@@ -86,6 +90,8 @@ first();
 
 ## Example 3: Microtasks vs Macrotasks
 
+**Task Queue Priority** - Demonstrates that microtasks (Promises, queueMicrotask) always execute before macrotasks (setTimeout, setInterval), showing queue priorities.
+
 ```javascript
 // Macrotasks (Task Queue)
 setTimeout(() => console.log('setTimeout 1'), 0);
@@ -123,6 +129,8 @@ setTimeout(() => {
 
 ### Pitfall 1: setTimeout(fn, 0) is not immediate
 
+**setTimeout Zero Delay Myth** - Shows that setTimeout(fn, 0) doesn't execute immediately - it's queued as a macrotask after all microtasks complete.
+
 ```javascript
 console.log('Start');
 
@@ -141,6 +149,8 @@ console.log('End');
 ```
 
 ### Pitfall 2: Blocking the Event Loop
+
+**Blocking vs Non-blocking Code** - Demonstrates how synchronous blocking operations freeze the UI, and how to break work into async chunks to keep the event loop responsive.
 
 ```javascript
 // BAD - Blocks event loop
@@ -170,6 +180,8 @@ nonBlockingOperation(); // Doesn't block
 
 ### 1. Use Microtasks for High Priority Work
 
+**Task Priority Strategy** - Use microtasks (queueMicrotask/Promises) for high-priority work that should run before rendering, macrotasks for lower priority.
+
 ```javascript
 // High priority - use Promise/queueMicrotask
 queueMicrotask(() => {
@@ -183,6 +195,8 @@ setTimeout(() => {
 ```
 
 ### 2. Avoid Long-Running Synchronous Code
+
+**Chunking Large Operations** - Breaks expensive operations into smaller chunks with async breaks, preventing UI freezing and maintaining responsiveness.
 
 ```javascript
 // BAD
@@ -211,6 +225,8 @@ async function processLargeArrayAsync(arr, chunkSize = 100) {
 ## Real-world Scenarios
 
 ### Scenario 1: React State Updates
+
+**React State Update Timing** - Shows how React batches state updates and when values are available in different phases of the event loop.
 
 ```javascript
 function Component() {

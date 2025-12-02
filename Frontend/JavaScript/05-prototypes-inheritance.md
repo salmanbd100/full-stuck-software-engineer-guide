@@ -8,6 +8,8 @@ JavaScript uses prototypal inheritance, which is different from classical inheri
 
 Every JavaScript object has an internal property `[[Prototype]]` (accessible via `__proto__` or `Object.getPrototypeOf()`).
 
+**Prototype Property Access** - Shows how to access an object's prototype using __proto__ or Object.getPrototypeOf(), and how objects inherit from Object.prototype.
+
 ```javascript
 const obj = {};
 
@@ -26,6 +28,8 @@ When you access a property, JavaScript searches:
 2. Its prototype
 3. The prototype's prototype
 4. ... until it reaches `null`
+
+**Prototype Chain Lookup** - Demonstrates how JavaScript traverses the prototype chain to find properties, inheriting from ancestors.
 
 ```javascript
 const grandparent = {
@@ -56,6 +60,8 @@ console.log(child.surname); // 'Smith' (from grandparent)
 
 Before ES6 classes, constructor functions were the main way to create objects.
 
+**Constructor Functions with Prototypes** - Shows how constructor functions create instances with shared methods on the prototype for memory efficiency.
+
 ```javascript
 function Person(name, age) {
     // Instance properties
@@ -85,6 +91,9 @@ console.log(alice.greet === bob.greet); // true (same function)
 ```
 
 **What `new` Does:**
+
+**'new' Operator Mechanics** - Breaks down what happens when 'new' is used: object creation, prototype linking, 'this' binding, and return.
+
 ```javascript
 function Person(name) {
     // 1. Creates new empty object: const this = {}
@@ -104,6 +113,8 @@ function createPerson(name) {
 ### 4. ES6 Classes
 
 Classes are syntactic sugar over constructor functions and prototypes.
+
+**ES6 Class Syntax** - Modern class syntax that compiles to prototype-based code, offering cleaner syntax for inheritance and methods.
 
 ```javascript
 class Person {
@@ -135,6 +146,9 @@ console.log(alice.__proto__ === Person.prototype); // true
 ### 5. Inheritance with Prototypes
 
 **Constructor Function Inheritance**
+
+**Classical Inheritance Pattern** - Shows pre-ES6 inheritance using constructor functions, Object.create(), and fixing constructor references.
+
 ```javascript
 // Parent constructor
 function Animal(name) {
@@ -168,6 +182,9 @@ console.log(buddy instanceof Animal); // true
 ```
 
 **ES6 Class Inheritance**
+
+**extends and super Keywords** - Modern inheritance using 'extends' for subclassing and 'super' for calling parent constructors and methods.
+
 ```javascript
 class Animal {
     constructor(name) {
@@ -207,6 +224,8 @@ buddy.bark(); // "Buddy says woof!"
 
 Create objects with specific prototype without constructor functions.
 
+**Object.create() for Prototypal Inheritance** - Creates objects directly with specified prototypes, offering simpler inheritance without constructors.
+
 ```javascript
 const personPrototype = {
     greet() {
@@ -230,6 +249,8 @@ const bob = Object.create(personPrototype, {
 ```
 
 ### 7. Checking Prototypes and Properties
+
+**Property and Prototype Checking** - Methods to distinguish own properties from inherited ones, check prototype chain, and verify instances.
 
 ```javascript
 const obj = { own: 'property' };
@@ -264,6 +285,9 @@ console.log(Object.prototype.isPrototypeOf(alice)); // true
 ### Q1: What's the difference between `__proto__` and `prototype`?
 
 **Answer:**
+
+**__proto__ vs prototype** - Clarifies that 'prototype' is a property of constructor functions while '__proto__' is the actual prototype reference of objects.
+
 ```javascript
 function Person(name) {
     this.name = name;
@@ -285,6 +309,9 @@ console.log(alice.__proto__ === Person.prototype); // true
 ### Q2: How does prototypal inheritance work?
 
 **Answer:**
+
+**Prototypal Inheritance Mechanism** - Explains property lookup through the prototype chain and how adding to prototypes affects all instances.
+
 ```javascript
 // When you access a property:
 const obj = {
@@ -320,6 +347,9 @@ bob.greet();   // Works too!
 **Answer: Three Ways**
 
 **1. Constructor Functions**
+
+**Pre-ES6 Inheritance Setup** - Manual inheritance using constructor functions with Object.create() to establish prototype chain.
+
 ```javascript
 function Animal(name) {
     this.name = name;
@@ -339,6 +369,9 @@ Dog.prototype.constructor = Dog;
 ```
 
 **2. ES6 Classes**
+
+**Modern Class-Based Inheritance** - Clean ES6 syntax for inheritance using extends and super, replacing manual prototype manipulation.
+
 ```javascript
 class Animal {
     constructor(name) {
@@ -358,6 +391,9 @@ class Dog extends Animal {
 ```
 
 **3. Object.create()**
+
+**Prototypal Inheritance Without Constructors** - Simple object-based inheritance creating new objects with existing objects as prototypes.
+
 ```javascript
 const animal = {
     eat() {
@@ -374,6 +410,8 @@ dog.bark = function() {
 ## 💡 Practical Examples
 
 ### Example 1: Method Sharing (Memory Efficiency)
+
+**Prototype vs Instance Methods** - Compares memory usage of instance methods versus shared prototype methods, highlighting efficiency benefits.
 
 ```javascript
 // Bad: Each instance gets its own copy
@@ -404,6 +442,8 @@ console.log(p3.greet === p4.greet); // true (efficient!)
 
 ### Example 2: Extending Built-in Objects (Be Careful!)
 
+**Modifying Built-in Prototypes** - Shows how to extend native objects (discouraged) and why utility functions are safer alternatives.
+
 ```javascript
 // Generally not recommended, but shows prototype power
 
@@ -423,6 +463,8 @@ function first(arr) {
 ```
 
 ### Example 3: Mixins Pattern
+
+**Multiple Inheritance with Mixins** - Uses Object.assign() to copy properties from multiple sources, achieving mixin-style multiple inheritance.
 
 ```javascript
 // Multiple inheritance via mixins
@@ -461,6 +503,8 @@ duck.swim(); // "swimming"
 ```
 
 ### Example 4: Private Properties Pattern
+
+**Privacy Through Closures** - Creates private variables using closures in constructors, trading memory efficiency for data privacy.
 
 ```javascript
 function Counter() {

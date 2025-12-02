@@ -17,6 +17,8 @@ JavaScript determines `this` using these rules (in priority order):
 
 When function is called standalone, `this` refers to global object (or `undefined` in strict mode).
 
+**Default 'this' Binding** - Shows how 'this' defaults to global object in non-strict mode and undefined in strict mode when functions are called standalone.
+
 ```javascript
 function showThis() {
     console.log(this);
@@ -37,6 +39,8 @@ showThisStrict(); // undefined
 
 When function is called as object method, `this` refers to the object.
 
+**Method Invocation** - Demonstrates implicit 'this' binding where 'this' refers to the object the method is called on, and how this binding can be lost.
+
 ```javascript
 const user = {
     name: 'Alice',
@@ -53,6 +57,9 @@ greetFunc(); // "Hello, I'm undefined" (this = window/undefined)
 ```
 
 **Nested Objects**
+
+**'this' in Nested Objects** - Shows that 'this' only refers to the immediate parent object, not ancestors in the chain.
+
 ```javascript
 const company = {
     name: 'TechCorp',
@@ -72,6 +79,9 @@ company.department.show(); // "Engineering" (not "TechCorp")
 Using `call`, `apply`, or `bind` to explicitly set `this`.
 
 **call()**
+
+**call() Method** - Explicitly sets 'this' value and passes arguments individually, allowing functions to borrow methods from other objects.
+
 ```javascript
 function greet(greeting, punctuation) {
     console.log(`${greeting}, I'm ${this.name}${punctuation}`);
@@ -86,6 +96,9 @@ greet.call(user, 'Hello', '!');
 ```
 
 **apply()**
+
+**apply() Method** - Similar to call() but accepts arguments as an array, useful when argument count varies or comes from array source.
+
 ```javascript
 function greet(greeting, punctuation) {
     console.log(`${greeting}, I'm ${this.name}${punctuation}`);
@@ -100,6 +113,9 @@ greet.apply(user, ['Hi', '.']);
 ```
 
 **bind()**
+
+**bind() Method** - Creates a new function with permanently bound 'this' value, essential for event handlers and callbacks where context must be preserved.
+
 ```javascript
 function greet(greeting) {
     console.log(`${greeting}, I'm ${this.name}`);
@@ -129,6 +145,8 @@ document.addEventListener('click', button.click.bind(button)); // Correct
 
 When function is called with `new`, a new object is created and `this` refers to it.
 
+**Constructor Function 'this'** - Shows how 'new' operator creates a new object, sets 'this' to it, and returns the object automatically.
+
 ```javascript
 function User(name, age) {
     this.name = name;
@@ -151,6 +169,8 @@ alice.greet(); // "I'm Alice, 25 years old"
 ### 6. Arrow Functions and 'this'
 
 Arrow functions DON'T have their own `this` - they inherit from enclosing scope (lexical `this`).
+
+**Lexical 'this' in Arrow Functions** - Arrow functions inherit 'this' from their enclosing scope, solving callback context issues but making them unsuitable as methods.
 
 ```javascript
 const user = {
@@ -181,6 +201,9 @@ user.showHobbiesArrow();
 ```
 
 **Arrow Functions Can't Be Bound**
+
+**Arrow Functions Ignore Binding** - Demonstrates that call, apply, and bind have no effect on arrow functions since they don't have their own 'this'.
+
 ```javascript
 const user = { name: 'Alice' };
 
@@ -193,6 +216,9 @@ greet.call(user); // "Hello, undefined" (this from outer scope)
 ```
 
 **When NOT to Use Arrow Functions**
+
+**Arrow Functions as Methods Antipattern** - Shows why arrow functions fail as object methods - they don't bind 'this' to the object.
+
 ```javascript
 const obj = {
     value: 42,
@@ -216,6 +242,8 @@ console.log(obj.getValueCorrect()); // 42
 
 ### Q1: What will this code output?
 
+**Lost Context Problem** - Classic interview question showing how method references lose their 'this' binding when extracted from objects.
+
 ```javascript
 const obj = {
     name: 'Object',
@@ -232,6 +260,9 @@ console.log(getName()); // ?
 **Reason:** Lost implicit binding. `getName` is called standalone, so `this` is global/undefined.
 
 **Fix:**
+
+**Fixing Lost Context** - Two solutions to restore 'this' binding: using bind() or calling the method directly on the object.
+
 ```javascript
 const getName = obj.getName.bind(obj);
 console.log(getName()); // "Object"
@@ -241,6 +272,8 @@ console.log(obj.getName()); // "Object"
 ```
 
 ### Q2: Fix this code
+
+**Timer Context Problem** - Shows a common bug where callback functions lose 'this' context in setTimeout/setInterval.
 
 ```javascript
 const timer = {
@@ -257,6 +290,9 @@ timer.start(); // NaN, NaN, NaN... (this.seconds is undefined)
 ```
 
 **Solution 1: Arrow Function**
+
+**Arrow Function Solution** - Uses arrow function's lexical 'this' to maintain context inside callbacks.
+
 ```javascript
 const timer = {
     seconds: 0,
@@ -270,6 +306,9 @@ const timer = {
 ```
 
 **Solution 2: bind()**
+
+**bind() Solution** - Explicitly binds 'this' to the callback function for consistent context.
+
 ```javascript
 const timer = {
     seconds: 0,
@@ -283,6 +322,9 @@ const timer = {
 ```
 
 **Solution 3: Store 'this'**
+
+**Storing 'this' Reference** - Old-school pattern of storing 'this' in a variable (self/that) to access in callbacks, still seen in legacy code.
+
 ```javascript
 const timer = {
     seconds: 0,
@@ -297,6 +339,8 @@ const timer = {
 ```
 
 ### Q3: Predict the output
+
+**Arrow Function Method Problem** - Quiz showing why arrow functions as object methods don't work - they don't bind 'this' to the object.
 
 ```javascript
 const person = {
@@ -315,6 +359,8 @@ person.greet(); // ?
 ## 💡 Practical Examples
 
 ### Example 1: Event Handler
+
+**Class Event Handlers** - Shows proper way to handle 'this' in DOM event handlers using arrow function class properties or bind().
 
 ```javascript
 class Button {
@@ -347,6 +393,8 @@ domButton.addEventListener('click', btn.handleClick); // Correct
 ```
 
 ### Example 2: Method Borrowing
+
+**Borrowing Methods with call()** - Demonstrates using call() to borrow methods from other objects and work with array-like objects.
 
 ```javascript
 const person1 = {
@@ -381,6 +429,8 @@ const arr2 = Array.from(arrayLike);
 
 ### Example 3: Function Currying with bind
 
+**Partial Application with bind** - Uses bind to create specialized functions by pre-filling arguments, useful for logging and utilities.
+
 ```javascript
 function multiply(a, b) {
     return a * b;
@@ -408,6 +458,8 @@ logInfo('App started'); // [INFO] App started
 ## 🚨 Common Pitfalls
 
 ### 1. Callback Functions
+
+**Callback 'this' Problem** - Shows multiple solutions for maintaining 'this' context in array method callbacks like forEach.
 
 ```javascript
 const user = {
@@ -441,6 +493,8 @@ printFriends: function() {
 
 ### 2. Constructor Functions Without 'new'
 
+**Missing 'new' Operator** - Demonstrates the danger of calling constructor functions without 'new', polluting global scope, and defensive solution.
+
 ```javascript
 function User(name) {
     this.name = name;
@@ -465,6 +519,8 @@ const user3 = UserSafe('Charlie'); // Works without 'new'
 ```
 
 ### 3. Method Extraction
+
+**Method Reference Problem** - Shows how extracting methods from objects loses 'this' binding and how to fix with bind().
 
 ```javascript
 const calculator = {

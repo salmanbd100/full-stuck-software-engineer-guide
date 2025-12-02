@@ -15,6 +15,8 @@
 
 ## Example 1: Promise Basics
 
+**Creating and Consuming Promises** - Shows how to create promises with resolve/reject, chain with then/catch, and use finally for cleanup operations.
+
 ```javascript
 // Creating a promise
 const myPromise = new Promise((resolve, reject) => {
@@ -54,6 +56,8 @@ myPromise
 ---
 
 ## Example 2: Async/Await Syntax
+
+**Async/Await Pattern** - Modern async syntax using async functions and await keyword for cleaner, synchronous-looking asynchronous code with try/catch error handling.
 
 ```javascript
 // Function returns a promise
@@ -99,6 +103,8 @@ getUserInfo(123)
 ---
 
 ## Example 3: Multiple Promises
+
+**Handling Multiple Async Operations** - Demonstrates Promise.all for parallel execution, Promise.allSettled for resilient handling, Promise.race for fastest response, and sequential patterns.
 
 ```javascript
 // Simulated API calls
@@ -184,6 +190,8 @@ async function loadSequentially() {
 
 ### Pitfall 1: Forgetting to Return Promise
 
+**Missing Return Statement** - Common mistake of not returning promises from functions, causing callers to lose the promise chain.
+
 ```javascript
 // WRONG
 function getData() {
@@ -204,6 +212,8 @@ getData().then(data => console.log(data));
 ```
 
 ### Pitfall 2: Not Handling Errors
+
+**Unhandled Promise Rejections** - Shows importance of error handling in promises using catch() or try/catch with async/await to prevent silent failures.
 
 ```javascript
 // WRONG - unhandled promise rejection
@@ -241,6 +251,8 @@ async function fetchData() {
 
 ### Pitfall 3: Sequential Instead of Parallel
 
+**Performance Anti-pattern** - Demonstrates the performance cost of awaiting independent operations sequentially versus executing them in parallel with Promise.all.
+
 ```javascript
 // WRONG - Sequential (slow)
 async function loadData() {
@@ -265,6 +277,8 @@ async function loadDataFast() {
 
 ### Pitfall 4: Mixing Promises and Async/Await
 
+**Inconsistent Async Patterns** - Shows why mixing promise chains with async/await leads to confusing code, recommending consistent style.
+
 ```javascript
 // CONFUSING - Mixing styles
 async function mixedStyle() {
@@ -288,6 +302,8 @@ async function consistentStyle() {
 ## Best Practices
 
 ### 1. Always Handle Errors
+
+**Robust Error Handling Pattern** - Comprehensive error handling with HTTP status checks, structured responses, and proper error propagation.
 
 ```javascript
 // Good error handling pattern
@@ -319,6 +335,8 @@ if (result.success) {
 
 ### 2. Use Promise.all for Independent Operations
 
+**Parallel Execution Optimization** - Uses Promise.all to run independent async operations concurrently, significantly improving performance.
+
 ```javascript
 // Good: Parallel execution
 async function loadDashboard() {
@@ -337,6 +355,8 @@ async function loadDashboard() {
 ```
 
 ### 3. Retry Logic for Failed Requests
+
+**Automatic Retry with Exponential Backoff** - Implements retry logic with increasing delays between attempts, handling transient failures gracefully.
 
 ```javascript
 async function fetchWithRetry(url, options = {}, retries = 3) {
@@ -377,6 +397,8 @@ try {
 
 ### Scenario 1: Fetch with Timeout
 
+**Request Timeout Implementation** - Uses Promise.race to add timeout functionality to fetch requests, preventing indefinite hangs.
+
 ```javascript
 function fetchWithTimeout(url, timeout = 5000) {
     return Promise.race([
@@ -405,6 +427,8 @@ async function loadData() {
 
 ### Scenario 2: Batching Requests
 
+**Batch Processing Pattern** - Processes multiple URLs in controlled batches to avoid overwhelming servers or hitting rate limits.
+
 ```javascript
 async function batchFetch(urls, batchSize = 3) {
     const results = [];
@@ -432,6 +456,8 @@ const data = await batchFetch(urls, 3);
 ```
 
 ### Scenario 3: Promise-based Event Emitter
+
+**Async Event Handling** - Creates an event emitter that waits for all async event handlers to complete before resolving.
 
 ```javascript
 class AsyncEventEmitter {

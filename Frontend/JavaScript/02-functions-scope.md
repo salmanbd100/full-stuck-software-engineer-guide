@@ -7,6 +7,9 @@ Understanding functions and scope is fundamental to JavaScript. This topic cover
 ### 1. Function Declarations vs Expressions
 
 **Function Declaration**
+
+**Hoisted Function Declaration** - Function declarations are hoisted to the top of their scope, allowing them to be called before their definition in the code.
+
 ```javascript
 // Hoisted to top of scope
 function greet(name) {
@@ -17,6 +20,9 @@ console.log(greet('Alice')); // "Hello, Alice!"
 ```
 
 **Function Expression**
+
+**Non-Hoisted Function Expression** - Function expressions are not hoisted and must be defined before use, assigned to variables like any other value.
+
 ```javascript
 // Not hoisted, assigned to variable
 const greet = function(name) {
@@ -27,6 +33,9 @@ console.log(greet('Bob')); // "Hello, Bob!"
 ```
 
 **Named Function Expression**
+
+**Self-Referencing Function** - Named function expressions allow the function to reference itself by name, useful for recursion while keeping the name scoped internally.
+
 ```javascript
 const factorial = function fact(n) {
     if (n <= 1) return 1;
@@ -39,6 +48,9 @@ console.log(factorial(5)); // 120
 ### 2. Arrow Functions
 
 **Basic Syntax**
+
+**Arrow Function Syntax Variants** - Shows various arrow function forms from single expressions to multi-statement blocks, demonstrating concise syntax options.
+
 ```javascript
 // Traditional function
 const add = function(a, b) {
@@ -62,6 +74,9 @@ const processUser = (user) => {
 ```
 
 **Key Differences from Regular Functions**
+
+**Arrow Function Limitations** - Arrow functions lack their own 'this' binding, cannot be constructors, and don't have an arguments object, requiring rest parameters instead.
+
 ```javascript
 // 1. No 'this' binding
 const obj = {
@@ -101,6 +116,9 @@ arrowWithRest(1, 2, 3);
 ### 3. Scope in JavaScript
 
 **Global Scope**
+
+**Global Variables** - Variables declared outside any function are globally scoped and accessible everywhere in the code.
+
 ```javascript
 // Variables accessible everywhere
 var globalVar = 'I am global';
@@ -113,6 +131,9 @@ function showGlobal() {
 ```
 
 **Function Scope**
+
+**Function-Scoped Variables** - Variables declared with var are scoped to their containing function, accessible throughout the entire function regardless of block.
+
 ```javascript
 function outer() {
     var functionScoped = 'Only in function';
@@ -128,6 +149,9 @@ function outer() {
 ```
 
 **Block Scope (let & const)**
+
+**Block-Scoped Variables** - let and const create variables scoped to their containing block (curly braces), preventing common closure bugs in loops.
+
 ```javascript
 {
     let blockScoped = 'In block';
@@ -152,6 +176,9 @@ for (var j = 0; j < 3; j++) {
 ```
 
 **Lexical Scope**
+
+**Scope Chain** - Inner functions can access variables from outer functions through lexical scoping, but not vice versa.
+
 ```javascript
 function outer() {
     const outerVar = 'outer';
@@ -172,6 +199,9 @@ outer();
 ### 4. Hoisting
 
 **Function Hoisting**
+
+**Function vs Expression Hoisting** - Function declarations are fully hoisted and can be called before definition, unlike function expressions which behave like variables.
+
 ```javascript
 // Function declarations are hoisted
 greet('Alice'); // Works! "Hello, Alice!"
@@ -189,6 +219,9 @@ const sayHi = function(name) {
 ```
 
 **Variable Hoisting**
+
+**Temporal Dead Zone** - var declarations are hoisted but initialized as undefined, while let/const are hoisted but remain in temporal dead zone until declaration.
+
 ```javascript
 console.log(x); // undefined (declaration hoisted, not initialization)
 var x = 5;
@@ -207,6 +240,8 @@ const z = 15;
 ```
 
 ### 5. Default Parameters
+
+**Default Parameter Values** - ES6 allows setting default values for function parameters, including expressions and references to previous parameters.
 
 ```javascript
 // ES6 default parameters
@@ -230,6 +265,8 @@ function greetWithTime(name, greeting = `Hello ${name}`) {
 ```
 
 ### 6. Rest Parameters
+
+**Rest Parameters** - Collects multiple arguments into an array using the spread operator, replacing the need for the arguments object.
 
 ```javascript
 function sum(...numbers) {
@@ -255,6 +292,9 @@ logInfo('update', 'user', 'profile', 'email');
 ### Q1: What's the difference between function declaration and expression?
 
 **Answer:**
+
+**Declaration vs Expression Comparison** - Shows the key difference in hoisting behavior between function declarations and expressions.
+
 ```javascript
 // Function Declaration
 // - Hoisted to top
@@ -278,6 +318,9 @@ const sayGoodbye = function() {
 ### Q2: Explain scope chain
 
 **Answer:**
+
+**Scope Chain Demonstration** - Illustrates how JavaScript searches for variables through nested scopes from inner to outer until found or reaching global scope.
+
 ```javascript
 const global = 'global';
 
@@ -309,6 +352,9 @@ outer();
 ### Q3: What is the temporal dead zone?
 
 **Answer:**
+
+**Temporal Dead Zone Example** - Shows the period between entering scope and variable initialization where let/const variables exist but cannot be accessed.
+
 ```javascript
 // Temporal Dead Zone (TDZ)
 // Period between entering scope and variable initialization
@@ -336,6 +382,8 @@ outer();
 
 ### Example 1: Counter with Private Variable
 
+**Private Variables with Closures** - Uses function scope to create truly private variables that can only be accessed through returned methods, demonstrating encapsulation.
+
 ```javascript
 function createCounter() {
     let count = 0; // Private variable (function scope)
@@ -357,6 +405,8 @@ console.log(counter.getCount());  // 1
 
 ### Example 2: Function Factory
 
+**Function Factory Pattern** - Creates specialized functions by capturing parameters in closure, enabling function customization and reusability.
+
 ```javascript
 function createMultiplier(multiplier) {
     return function(number) {
@@ -372,6 +422,8 @@ console.log(triple(5)); // 15
 ```
 
 ### Example 3: Callback with Correct Scope
+
+**Arrow Functions Preserve 'this'** - Demonstrates how arrow functions inherit 'this' from their enclosing scope, solving common callback context issues.
 
 ```javascript
 const user = {
@@ -404,6 +456,8 @@ user.printHobbies();
 
 ### 1. Variable Leaking to Global Scope
 
+**Implicit Global Variables** - Shows how forgetting var/let/const accidentally creates global variables, polluting the global namespace.
+
 ```javascript
 function createUser() {
     // Missing var/let/const - creates global variable!
@@ -420,6 +474,8 @@ function createUserCorrect() {
 ```
 
 ### 2. Loop Closure Issue
+
+**Classic var Loop Bug** - Illustrates the famous closure-in-loop problem with var and two solutions: let for block scope or IIFE to create new scope.
 
 ```javascript
 // Problem
@@ -458,6 +514,8 @@ for (var i = 0; i < 3; i++) {
 ```
 
 ### 3. Arrow Function 'this' Gotcha
+
+**Arrow Functions as Methods** - Shows why arrow functions shouldn't be used as object methods since they don't bind their own 'this' context.
 
 ```javascript
 const button = {

@@ -28,6 +28,9 @@ TypeScript is a superset of JavaScript that adds static type checking. Understan
 ## Primitive Types
 
 ### string
+
+**String Type Annotation** - Explicitly declare string types for variables. TypeScript enforces type safety, preventing assignment of incompatible types like numbers.
+
 ```typescript
 let name: string = "Alice";
 let greeting: string = 'Hello';
@@ -38,6 +41,9 @@ name = 42; // Type 'number' is not assignable to type 'string'
 ```
 
 ### number
+
+**Number Type** - All numeric values (integers, floats, hex, binary, octal) use the number type. TypeScript treats all numbers as floating-point values.
+
 ```typescript
 let age: number = 25;
 let price: number = 19.99;
@@ -50,6 +56,9 @@ let float: number = 3.14;
 ```
 
 ### boolean
+
+**Boolean Type** - Represents true/false values. TypeScript prevents assigning strings like "yes" or numbers like 1/0 to boolean variables.
+
 ```typescript
 let isActive: boolean = true;
 let hasPermission: boolean = false;
@@ -59,6 +68,9 @@ isActive = "yes"; // Type 'string' is not assignable to type 'boolean'
 ```
 
 ### null and undefined
+
+**Null and Undefined with strictNullChecks** - With strict mode enabled, null and undefined are not assignable to other types unless explicitly allowed using union types.
+
 ```typescript
 let nothing: null = null;
 let notDefined: undefined = undefined;
@@ -73,6 +85,9 @@ let age: number | undefined = undefined;
 ```
 
 ### symbol
+
+**Symbol Type** - Unique, immutable primitive values often used as object keys. Each symbol is guaranteed to be unique, even with the same description.
+
 ```typescript
 let sym1: symbol = Symbol("key");
 let sym2: symbol = Symbol("key");
@@ -81,6 +96,9 @@ console.log(sym1 === sym2); // false - symbols are unique
 ```
 
 ### bigint (ES2020+)
+
+**BigInt Type** - Represents arbitrarily large integers beyond Number.MAX_SAFE_INTEGER. bigint and number are separate types and not compatible.
+
 ```typescript
 let big: bigint = 100n;
 let huge: bigint = BigInt(9007199254740991);
@@ -96,6 +114,8 @@ let mixed: bigint = 100; // Type 'number' is not assignable to type 'bigint'
 ### any
 Disables type checking - avoid when possible!
 
+**any Type** - Opts out of type checking, allowing any operation. Use only when migrating from JavaScript or dealing with truly dynamic data. Avoid in production code.
+
 ```typescript
 let anything: any = "hello";
 anything = 42; // OK
@@ -110,6 +130,8 @@ anything.foo.bar(); // No error, but will crash at runtime!
 
 ### unknown
 Safer alternative to `any` - requires type checking before use.
+
+**unknown Type** - Type-safe alternative to any that requires type guards before use. Forces you to narrow the type before performing operations.
 
 ```typescript
 let value: unknown = "hello";
@@ -129,6 +151,8 @@ let anything: any = value; // OK
 ### void
 Function returns nothing.
 
+**void Type** - Indicates a function returns no value (undefined). Used for functions that perform side effects without returning data.
+
 ```typescript
 function logMessage(message: string): void {
   console.log(message);
@@ -144,6 +168,8 @@ let nothing: void = undefined;
 
 ### never
 Function never returns (throws error or infinite loop).
+
+**never Type** - Represents values that never occur. Used for functions that always throw errors, infinite loops, or exhaustive type checking in switch statements.
 
 ```typescript
 // Function that throws
@@ -182,6 +208,8 @@ function handleStatus(status: Status) {
 
 Explicitly specify types:
 
+**Type Annotations** - Explicitly declare types for variables, function parameters, and return values to enable compile-time type checking and better IDE support.
+
 ```typescript
 // Variables
 let name: string = "Alice";
@@ -210,6 +238,8 @@ let user: { name: string; age: number } = {
 ## Type Inference
 
 TypeScript automatically infers types when not explicitly annotated.
+
+**Type Inference** - TypeScript automatically determines types from assigned values. Best practice is to let TypeScript infer obvious types and be explicit only when necessary.
 
 ```typescript
 // Type is inferred as string
@@ -242,6 +272,8 @@ function processData(data: unknown): string {
 
 ### Arrays
 
+**Array Type Syntax** - Two equivalent syntaxes for arrays: T[] or Array<T>. Arrays are type-safe collections where all methods enforce the element type.
+
 ```typescript
 // Array of strings
 let names: string[] = ["Alice", "Bob", "Charlie"];
@@ -266,6 +298,8 @@ let matrix: number[][] = [
 
 ### Tuples
 Fixed-length arrays with specific types at each position.
+
+**Tuple Types** - Fixed-length arrays where each position has a specific type. Useful for representing structured data like coordinates, key-value pairs, or function return values.
 
 ```typescript
 // Tuple: [string, number]
@@ -292,6 +326,8 @@ let employee: [name: string, age: number, salary: number] = ["Alice", 25, 50000]
 
 ### readonly Arrays and Tuples
 
+**readonly Modifier** - Prevents modification of arrays and tuples. Useful for immutable data structures and function parameters that shouldn't be mutated.
+
 ```typescript
 // readonly array
 let numbers: readonly number[] = [1, 2, 3];
@@ -312,6 +348,8 @@ names.push("Charlie"); // Error
 ## Objects
 
 ### Object Type Annotations
+
+**Object Type Literals** - Inline type definitions for objects with optional and readonly properties. Provides type safety for object shape and property access.
 
 ```typescript
 // Inline type
@@ -339,6 +377,8 @@ config.apiKey = "new"; // Error - readonly
 ### Index Signatures
 For objects with dynamic keys.
 
+**Index Signatures** - Define types for objects with dynamic property names. Allows any string or number key while enforcing value type consistency.
+
 ```typescript
 // String keys, number values
 let scores: { [key: string]: number } = {
@@ -359,6 +399,8 @@ let array: { [index: number]: string } = {
 
 ### Object Type
 
+**object Type** - Represents any non-primitive type (objects, arrays, functions). Different from Object (capital O) which includes primitives via boxing.
+
 ```typescript
 // Accepts any non-primitive value
 let obj: object = { name: "Alice" };
@@ -375,6 +417,8 @@ obj = null; // Error
 ## Functions
 
 ### Function Type Annotations
+
+**Function Signatures** - Type annotations for parameters and return values ensure type safety in function calls. Includes support for optional, default, and rest parameters.
 
 ```typescript
 // Named function
@@ -413,6 +457,8 @@ sum(1, 2, 3, 4); // 10
 
 ### Function Type Expressions
 
+**Function Types** - Define reusable function signatures using type aliases. Useful for callbacks, event handlers, and higher-order functions.
+
 ```typescript
 // Function type
 type MathOperation = (a: number, b: number) => number;
@@ -431,6 +477,8 @@ processData("hello", (result) => {
 ```
 
 ### void vs undefined
+
+**void vs undefined Return Types** - void allows ignoring return values, while undefined requires explicitly returning undefined. Important distinction for callback functions.
 
 ```typescript
 // void - return value is ignored
@@ -467,6 +515,8 @@ const undefinedFn: UndefinedFunc = () => {
 - `any`: Disables all type checking. You can do anything with it.
 - `unknown`: Type-safe alternative. Must narrow the type before use.
 
+**any vs unknown Comparison** - Demonstrates the safety difference: any bypasses type checking completely, while unknown requires type guards before operations.
+
 ```typescript
 let anyValue: any = "hello";
 anyValue.toUpperCase(); // OK (no type checking)
@@ -491,6 +541,8 @@ if (typeof unknownValue === "string") {
 - `void`: Function returns undefined or nothing
 - `never`: Function never returns (throws error or infinite loop)
 
+**void vs never Comparison** - void functions complete normally and return undefined, while never functions never complete (throw or loop infinitely).
+
 ```typescript
 function logMessage(): void {
   console.log("Hello");
@@ -508,6 +560,9 @@ function throwError(): never {
 ### Q3: How do you type a function that accepts a callback?
 
 **Answer:**
+
+**Callback Function Types** - Two approaches: inline callback types or type aliases. Type aliases improve reusability and readability for complex function signatures.
+
 ```typescript
 // Method 1: Inline type
 function processData(
@@ -536,6 +591,8 @@ processData("hello", (result) => {
 
 **Answer:** They're identical - just different syntax:
 
+**Array Syntax Comparison** - Both string[] and Array<string> are equivalent. Prefer T[] for simple types, Array<T> for complex generic types.
+
 ```typescript
 let names1: string[] = ["Alice", "Bob"];
 let names2: Array<string> = ["Alice", "Bob"];
@@ -550,6 +607,9 @@ let complexArray: Array<[string, number]> = [["Alice", 25]];
 ### Q5: How do you create a readonly array?
 
 **Answer:**
+
+**readonly Array Methods** - Three ways to create immutable arrays: readonly modifier, ReadonlyArray type, or const assertion. All prevent push, pop, and index assignment.
+
 ```typescript
 // Method 1: readonly modifier
 let numbers: readonly number[] = [1, 2, 3];

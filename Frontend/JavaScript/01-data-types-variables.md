@@ -15,6 +15,8 @@ JavaScript has **dynamic typing**, meaning variables can hold values of any type
 
 ## Example 1: Primitive vs Reference Types
 
+**Primitive vs Reference Types** - Demonstrates how primitive types are stored by value while reference types (objects, arrays) are stored by reference, showing the key difference in memory allocation.
+
 ```javascript
 // PRIMITIVE TYPES (stored by value)
 // string, number, boolean, undefined, null, symbol, bigint
@@ -45,6 +47,8 @@ console.log(arr2); // [1, 2, 3, 4]
 ---
 
 ## Example 2: Type Coercion
+
+**Type Coercion** - Shows JavaScript's implicit type conversion in operations and comparisons, including falsy values and the difference between == and ===.
 
 ```javascript
 // Implicit type coercion
@@ -78,6 +82,8 @@ console.log(Boolean({}));       // true
 ---
 
 ## Example 3: Variable Declarations
+
+**var, let, const** - Compares function-scoped var with block-scoped let and const, demonstrating hoisting and temporal dead zone.
 
 ```javascript
 // VAR (function-scoped, hoisted)
@@ -124,6 +130,8 @@ arr.push(4);  // OK
 
 ### Pitfall 1: Type Coercion Surprises
 
+**Type Coercion Edge Cases** - Demonstrates unexpected results from implicit type conversion, especially with arrays and objects, highlighting why strict equality is essential.
+
 ```javascript
 // Array to string coercion
 console.log([1, 2] + [3, 4]); // '1,23,4'
@@ -144,6 +152,8 @@ console.log('' === 0);     // false
 ```
 
 ### Pitfall 2: Reference Type Mutations
+
+**Unintended Mutations** - Shows how modifying objects or arrays passed to functions affects the original, and how to create copies to avoid this.
 
 ```javascript
 // Unexpected mutation
@@ -169,6 +179,8 @@ console.log(modified2); // [1, 2, 3, 4]
 
 ### Pitfall 3: var Hoisting Issues
 
+**var Scope Problems in Loops** - Illustrates the classic closure problem with var in loops and why let is the solution for block-scoped variables.
+
 ```javascript
 // Problem with var in loops
 for (var i = 0; i < 3; i++) {
@@ -189,6 +201,8 @@ for (let i = 0; i < 3; i++) {
 
 ### 1. Use const by default, let when needed, avoid var
 
+**Modern Variable Declaration** - Demonstrates the recommended approach of using const for immutable bindings and let for reassignable values.
+
 ```javascript
 // Good
 const MAX_SIZE = 100;
@@ -202,6 +216,8 @@ var x = 10; // Don't use var in modern JavaScript
 ```
 
 ### 2. Always use strict equality (===)
+
+**Strict vs Loose Equality** - Shows why strict equality (===) prevents unexpected type coercion bugs compared to loose equality (==).
 
 ```javascript
 // Good
@@ -217,6 +233,8 @@ if (value == null) { } // Checks both null and undefined
 ```
 
 ### 3. Be explicit with type conversions
+
+**Explicit Type Conversion** - Demonstrates clear, readable type conversions using built-in constructors instead of relying on implicit coercion.
 
 ```javascript
 // Good - explicit conversion
@@ -235,6 +253,8 @@ const bool2 = !!value;
 ## Real-world Scenarios
 
 ### Scenario 1: Deep Cloning Objects
+
+**Deep vs Shallow Copying** - Compares different techniques for cloning objects, from shallow spread operators to deep cloning with JSON or recursive functions.
 
 ```javascript
 // Shallow copy (only top level)
@@ -267,6 +287,8 @@ function deepClone(obj) {
 
 ### Scenario 2: Type Checking
 
+**Runtime Type Checking** - Shows how to properly check types using typeof, Array.isArray, and strict equality for null, avoiding common typeof quirks.
+
 ```javascript
 function processValue(value) {
     // Check primitive types
@@ -298,6 +320,8 @@ function processValue(value) {
 ```
 
 ### Scenario 3: Immutable Updates
+
+**Immutable Data Patterns** - Demonstrates techniques for updating nested objects and arrays without mutation, essential for state management in React and Redux.
 
 ```javascript
 // State update pattern (React-style)

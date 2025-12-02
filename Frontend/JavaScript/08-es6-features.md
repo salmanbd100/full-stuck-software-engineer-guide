@@ -6,6 +6,8 @@ ES6 (ECMAScript 2015) and later versions introduced many features that modernize
 
 ### 1. Let and Const
 
+**Block-Scoped Variable Declarations** - Compares var (function-scoped) with let (block-scoped, reassignable) and const (block-scoped, immutable binding) for modern variable declaration.
+
 ```javascript
 // var: function-scoped, hoisted, can redeclare
 var x = 1;
@@ -34,6 +36,8 @@ arr.push(4); // OK
 ```
 
 ### 2. Arrow Functions
+
+**Concise Function Syntax** - Arrow functions provide shorter syntax and lexical 'this' binding, perfect for callbacks but unsuitable as methods or constructors.
 
 ```javascript
 // Traditional
@@ -73,6 +77,8 @@ const obj = {
 
 ### 3. Template Literals
 
+**String Interpolation and Multiline Strings** - Template literals enable variable interpolation, multiline strings, and tagged templates for advanced string processing.
+
 ```javascript
 const name = 'Alice';
 const age = 25;
@@ -109,6 +115,9 @@ const highlighted = highlight`Name: ${name}, Age: ${age}`;
 ### 4. Destructuring
 
 **Array Destructuring**
+
+**Array Pattern Matching** - Extracts values from arrays into variables, supporting skipping elements, rest patterns, default values, and variable swapping.
+
 ```javascript
 const numbers = [1, 2, 3, 4, 5];
 
@@ -140,6 +149,9 @@ console.log(m, n); // 2 1
 ```
 
 **Object Destructuring**
+
+**Object Pattern Matching** - Extracts properties from objects with support for renaming, default values, nested destructuring, and function parameter destructuring.
+
 ```javascript
 const user = {
     name: 'Alice',
@@ -182,6 +194,9 @@ greet(user); // "Hello Alice, you are 25"
 ### 5. Spread and Rest Operators
 
 **Spread Operator (...)**
+
+**Expanding Iterables** - Spreads array/object elements for concatenation, copying, merging objects, and passing multiple arguments to functions.
+
 ```javascript
 // Arrays
 const arr1 = [1, 2, 3];
@@ -216,6 +231,9 @@ console.log(Math.max(...numbers)); // 3
 ```
 
 **Rest Parameters**
+
+**Gathering Remaining Arguments** - Collects remaining function arguments into an array, replacing the need for the arguments object with clearer syntax.
+
 ```javascript
 // Gather remaining arguments
 function sum(...numbers) {
@@ -235,6 +253,8 @@ console.log(greet('Hello', 'Alice', 'Bob', 'Charlie'));
 ```
 
 ### 6. Default Parameters
+
+**Function Parameter Defaults** - Sets default values for function parameters including expressions and references to other parameters, eliminating manual checks.
 
 ```javascript
 // Old way
@@ -265,6 +285,8 @@ console.log(greetFull('Alice')); // "Hello Alice"
 ```
 
 ### 7. Object Literals (Enhanced)
+
+**Enhanced Object Syntax** - Property shorthand, method shorthand, and computed property names make object creation more concise and dynamic.
 
 ```javascript
 const name = 'Alice';
@@ -299,6 +321,8 @@ const person = {
 ```
 
 ### 8. Classes
+
+**Class Syntax** - Modern class syntax with constructors, instance methods, getters/setters, static methods, and inheritance through extends/super keywords.
 
 ```javascript
 class Person {
@@ -353,6 +377,9 @@ console.log(bob.study()); // Own method
 ### 9. Modules
 
 **Exporting**
+
+**ES6 Module Exports** - Named exports for multiple values and default export for primary value, enabling modular code organization.
+
 ```javascript
 // math.js
 
@@ -375,6 +402,9 @@ export default class Calculator {
 ```
 
 **Importing**
+
+**ES6 Module Imports** - Import named exports, default exports, rename imports, or import all exports with various import syntax options.
+
 ```javascript
 // app.js
 
@@ -397,6 +427,8 @@ import Calculator, { PI, add } from './math.js';
 ```
 
 ### 10. Promises
+
+**Promise-Based Async** - Handles asynchronous operations with promises using then/catch/finally, Promise.all, and Promise.race for multiple operations.
 
 ```javascript
 // Creating a promise
@@ -441,6 +473,8 @@ Promise.race([
 ```
 
 ### 11. Async/Await
+
+**Synchronous-Looking Async Code** - Async/await syntax makes promise-based code look synchronous with try/catch error handling, improving readability.
 
 ```javascript
 // Traditional promise chain
@@ -491,6 +525,8 @@ async function fetchMultiple() {
 
 ### 12. Symbols
 
+**Unique Identifiers** - Symbols create unique, non-enumerable property keys, useful for meta-programming and avoiding property name collisions.
+
 ```javascript
 // Create unique identifiers
 const id1 = Symbol('id');
@@ -519,6 +555,9 @@ console.log(iterator.next()); // { value: 1, done: false }
 ### 13. Iterators and Generators
 
 **Iterators**
+
+**Custom Iteration Protocol** - Implements the iterator protocol with Symbol.iterator and next() method for custom iterable objects.
+
 ```javascript
 // Custom iterator
 const range = {
@@ -547,6 +586,9 @@ for (let num of range) {
 ```
 
 **Generators**
+
+**Generator Functions** - Functions that can pause and resume execution using yield, creating iterators more easily than manual iterator protocol.
+
 ```javascript
 // Generator function (easier than iterators)
 function* numberGenerator() {
@@ -592,6 +634,9 @@ for (let i = 0; i < 10; i++) {
 ### 14. Maps and Sets
 
 **Map**
+
+**Key-Value Collections** - Map provides a proper key-value data structure accepting any type as key, with size property and iteration methods.
+
 ```javascript
 // Better than objects for key-value pairs
 const map = new Map();
@@ -622,6 +667,9 @@ const mapFromArray = new Map([
 ```
 
 **Set**
+
+**Unique Value Collections** - Set stores unique values of any type, perfect for removing duplicates and membership testing.
+
 ```javascript
 // Unique values only
 const set = new Set();

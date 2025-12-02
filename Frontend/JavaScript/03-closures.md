@@ -14,6 +14,8 @@ A **closure** is a function that has access to variables in its outer (enclosing
 
 ## Example 1: Basic Closure
 
+**Closure Fundamentals** - Demonstrates how inner functions retain access to outer function variables even after the outer function has returned, forming a closure.
+
 ```javascript
 function outerFunction() {
     const outerVariable = 'I am from outer scope';
@@ -42,6 +44,8 @@ closure(); // Output: "I am from outer scope"
 ---
 
 ## Example 2: Counter with Closure (Data Privacy)
+
+**Data Encapsulation** - Uses closures to create private variables that can only be accessed and modified through exposed methods, ensuring data privacy.
 
 ```javascript
 function createCounter() {
@@ -84,6 +88,8 @@ Data encapsulation - `count` is private and can only be modified through defined
 
 ## Example 3: Function Factory
 
+**Function Factory with Closures** - Creates specialized functions by capturing different parameter values in separate closures, enabling function customization.
+
 ```javascript
 function createMultiplier(multiplier) {
     return function(number) {
@@ -108,6 +114,8 @@ Creating specialized functions from a generic function template.
 ## Common Pitfalls
 
 ### Pitfall 1: Closures in Loops with var
+
+**Loop Variable Capture Problem** - Shows the classic issue where var in loops causes all closures to share the same variable, and solutions using let or IIFE.
 
 ```javascript
 // WRONG - Common mistake
@@ -139,6 +147,8 @@ for (var i = 0; i < 3; i++) {
 
 ### Pitfall 2: Memory Leaks
 
+**Closure Memory Management** - Demonstrates how closures can unintentionally keep large objects in memory, and how to extract only needed values to prevent leaks.
+
 ```javascript
 // Potential memory leak
 function createHugeArray() {
@@ -165,6 +175,8 @@ function createOptimized() {
 ```
 
 ### Pitfall 3: Unexpected Behavior with this
+
+**'this' Binding in Closures** - Shows how arrow functions capture 'this' from outer scope while regular functions have their own 'this' binding.
 
 ```javascript
 const obj = {
@@ -193,6 +205,8 @@ obj.getValue();
 ## Best Practices
 
 ### 1. Use Closures for Data Privacy
+
+**Private State Management** - Implements a bank account with private balance using closures, demonstrating secure state management with controlled access.
 
 ```javascript
 // Good: Encapsulated state
@@ -224,6 +238,8 @@ console.log(account.getBalance());    // 1300
 ```
 
 ### 2. Module Pattern
+
+**Module Pattern with IIFE** - Uses immediately-invoked function expression with closures to create modules with private variables and public API.
 
 ```javascript
 const calculator = (function() {
@@ -258,6 +274,8 @@ console.log(calculator.result); // undefined (private)
 ```
 
 ### 3. Memoization with Closures
+
+**Caching Function Results** - Creates a memoization wrapper using closures to cache expensive function results, improving performance through result reuse.
 
 ```javascript
 function memoize(fn) {
@@ -296,6 +314,8 @@ console.log(memoizedFib(10)); // Returning from cache 55
 
 ### Scenario 1: Event Handlers with Dynamic Data
 
+**Dynamic Event Handlers** - Creates event handlers that capture specific data through closures, enabling unique behavior for each handler instance.
+
 ```javascript
 function createButtonHandler(buttonId, message) {
     return function() {
@@ -313,6 +333,8 @@ buttons.forEach((id, index) => {
 ```
 
 ### Scenario 2: Partial Application
+
+**Partial Function Application** - Uses closures to pre-fill function arguments, creating specialized versions of generic functions for reusability.
 
 ```javascript
 function partial(fn, ...fixedArgs) {
@@ -333,6 +355,8 @@ console.log(sayHi('Bob'));      // Hi, Bob!
 ```
 
 ### Scenario 3: React Hooks Pattern
+
+**useState Implementation Concept** - Simplified version showing how React's useState uses closures to maintain state between function calls.
 
 ```javascript
 // Simplified version of how useState works internally
