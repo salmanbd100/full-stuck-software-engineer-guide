@@ -95,9 +95,16 @@ System Design Pillars
 
 ---
 
-### 2. Frontend System Design (12 Topics)
+### 2. Frontend System Design (13 Topics)
 
 **Building Complex Frontend Systems**
+
+- [00. Interview Strategy & Common Mistakes](./Frontend/00-interview-strategy.md)
+  - Why 95% of developers fail
+  - The 5 critical mistakes
+  - Requirements gathering
+  - Trade-off analysis
+  - Interview framework
 
 - [01. Frontend Architecture Patterns](./Frontend/01-architecture.md)
   - MVC, MVP, MVVM
