@@ -5,6 +5,8 @@ Search Engine Optimization (SEO) and analytics are essential for discoverability
 
 ## SEO Fundamentals
 
+Core SEO concepts including meta tags, structured data, and sitemaps for better search engine visibility.
+
 ### Meta Tags
 
 Essential metadata for search engines and social media.
@@ -48,6 +50,8 @@ Essential metadata for search engines and social media.
 ```
 
 ### React Meta Tags
+
+Dynamic meta tag management in React applications using libraries like react-helmet for client-side routing.
 
 ```jsx
 // Using react-helmet
@@ -192,6 +196,8 @@ Help search engines understand content.
 
 ### Sitemap
 
+XML file listing all website pages to help search engines discover and index content efficiently.
+
 ```xml
 <!-- sitemap.xml -->
 <?xml version="1.0" encoding="UTF-8"?>
@@ -244,6 +250,8 @@ export async function getServerSideProps({ res }) {
 
 ### Robots.txt
 
+Plain text file instructing search engine crawlers which pages to index or avoid crawling.
+
 ```
 # robots.txt
 User-agent: *
@@ -256,7 +264,11 @@ Sitemap: https://example.com/sitemap.xml
 
 ## Rendering for SEO
 
+Choosing appropriate rendering strategies to ensure search engines can properly crawl and index content.
+
 ### Server-Side Rendering
+
+Rendering pages on the server to provide complete HTML to search engine crawlers for better SEO.
 
 ```javascript
 // Next.js SSR for SEO
@@ -297,7 +309,7 @@ export default function ProductPage({ product, meta }) {
 
 ### Dynamic Rendering
 
-Serve different content to bots vs users.
+Detecting search engine bots and serving pre-rendered HTML while maintaining SPA for users. Serve different content to bots vs users.
 
 ```javascript
 // Detect bots
@@ -319,6 +331,8 @@ app.use((req, res, next) => {
 ```
 
 ## Performance and SEO
+
+Understanding how page performance metrics directly impact search engine rankings and visibility.
 
 ### Core Web Vitals
 
@@ -353,7 +367,11 @@ function useWebVitals() {
 
 ## Analytics Implementation
 
+Integrating analytics tools to track user behavior, measure conversions, and inform data-driven decisions.
+
 ### Google Analytics 4
+
+Latest version of Google Analytics with event-based tracking and cross-platform measurement capabilities.
 
 ```html
 <!-- Google Analytics 4 -->
@@ -419,6 +437,8 @@ ReactGA.event('purchase', {
 ```
 
 ### Custom Analytics
+
+Building custom analytics tracking system for complete control over data collection and privacy.
 
 ```javascript
 // Custom analytics tracker
@@ -528,6 +548,8 @@ window.addEventListener('load', () => {
 
 ### Event Tracking
 
+Tracking specific user interactions and custom events for detailed behavior analysis and conversion funnels.
+
 ```javascript
 // React hook for tracking
 function useAnalytics() {
@@ -574,7 +596,11 @@ function withPageTracking(Component) {
 
 ## Privacy and Consent
 
+Implementing GDPR-compliant cookie consent and privacy controls for analytics tracking.
+
 ### Cookie Consent
+
+User consent interface for cookie usage required by GDPR and privacy regulations before tracking.
 
 ```jsx
 function CookieConsent() {
@@ -612,6 +638,8 @@ function initializeAnalytics() {
 ```
 
 ### GDPR Compliance
+
+Granular cookie categorization and consent management for European privacy law compliance.
 
 ```javascript
 // Cookie categorization
@@ -779,4 +807,4 @@ Use canonical for duplicate content, redirect for moved pages.
 - Cookie consent is required for GDPR compliance
 
 ---
-[ê Back to SystemDesign](../README.md)
+[ÔøΩ Back to SystemDesign](../README.md)

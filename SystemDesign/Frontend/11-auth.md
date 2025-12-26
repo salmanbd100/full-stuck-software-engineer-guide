@@ -5,6 +5,8 @@ Authentication verifies user identity (who you are), while authorization determi
 
 ## Authentication Patterns
 
+Different approaches to user authentication from stateless tokens to session-based systems with varying security trade-offs.
+
 ### JWT (JSON Web Tokens)
 
 Stateless authentication using signed tokens.
@@ -19,6 +21,8 @@ SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c  // Signature
 ```
 
 ### Token-Based Flow
+
+Complete JWT authentication flow with access and refresh tokens for secure stateless authentication.
 
 ```javascript
 // Login flow
@@ -154,6 +158,8 @@ app.post('/api/auth/logout', (req, res) => {
 
 ### OAuth 2.0 / Social Login
 
+Third-party authentication using providers like Google, Facebook for simplified user onboarding and security.
+
 ```javascript
 // OAuth flow with Google
 function GoogleLoginButton() {
@@ -228,7 +234,11 @@ passport.use(new GoogleStrategy({
 
 ## React Authentication
 
+React-specific authentication patterns using Context API and custom hooks for global auth state management.
+
 ### Auth Context
+
+Centralized authentication state management using React Context for app-wide user session access.
 
 ```jsx
 // AuthContext.js
@@ -374,6 +384,8 @@ function App() {
 
 ### Login Component
 
+Complete login form component with form validation, error handling, and navigation after authentication.
+
 ```jsx
 function LoginPage() {
   const [email, setEmail] = useState('');
@@ -424,7 +436,11 @@ function LoginPage() {
 
 ## Authorization
 
+Access control systems determining what authenticated users can do based on roles or attributes.
+
 ### Role-Based Access Control (RBAC)
+
+Permission system based on predefined user roles like admin, moderator, or user for simple access control.
 
 ```javascript
 // User roles
@@ -482,6 +498,8 @@ function AdminRoute({ children }) {
 
 ### Attribute-Based Access Control (ABAC)
 
+Fine-grained permissions based on user attributes, resource properties, and context for complex authorization scenarios.
+
 ```javascript
 // More granular permissions
 function canAccess(user, resource, action) {
@@ -525,7 +543,11 @@ function PostActions({ post }) {
 
 ## Security Best Practices
 
+Critical security measures to protect authentication tokens and prevent common vulnerabilities like XSS and CSRF.
+
 ### Secure Token Storage
+
+Comparing token storage options from localStorage to httpOnly cookies for balancing convenience and security.
 
 ```javascript
 // L Bad: Vulnerable to XSS
@@ -577,6 +599,8 @@ class AuthService {
 
 ### CSRF Protection
 
+Preventing Cross-Site Request Forgery attacks using CSRF tokens to validate request authenticity.
+
 ```javascript
 // Server generates CSRF token
 app.get('/api/csrf-token', (req, res) => {
@@ -614,6 +638,8 @@ async function makeProtectedRequest(url, data) {
 ```
 
 ### Password Security
+
+Server-side password hashing with bcrypt and client-side validation for strong password requirements.
 
 ```javascript
 // Server-side password hashing
@@ -666,6 +692,8 @@ function validatePassword(password) {
 ```
 
 ## Multi-Factor Authentication
+
+Adding extra security layer with TOTP-based two-factor authentication using apps like Google Authenticator.
 
 ```javascript
 // Server generates TOTP secret
@@ -833,4 +861,4 @@ setInterval(async () => {
 - MFA adds extra security layer for sensitive operations
 
 ---
-[ê Back to SystemDesign](../README.md)
+[ÔøΩ Back to SystemDesign](../README.md)

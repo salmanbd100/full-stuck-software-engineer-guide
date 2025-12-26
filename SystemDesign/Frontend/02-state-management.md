@@ -5,7 +5,11 @@ Managing application state in large-scale frontend applications.
 
 ## State Management Patterns
 
+Different approaches to managing application state, each with unique trade-offs for complexity, performance, and scalability.
+
 ### Redux Pattern
+
+Predictable state container using unidirectional data flow with actions, reducers, and a single store.
 ```javascript
 // Actions
 const INCREMENT = 'INCREMENT';
@@ -55,6 +59,9 @@ const fetchUsers = () => async (dispatch) => {
 ```
 
 ### Redux Toolkit (Modern Approach)
+
+Official opinionated toolset for efficient Redux development, reducing boilerplate with built-in best practices.
+
 ```javascript
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
@@ -103,6 +110,9 @@ export const selectUserById = (state, userId) =>
 ```
 
 ### Context API + useReducer
+
+React's built-in state management solution combining Context for distribution and useReducer for complex state logic.
+
 ```jsx
 // Context with reducer
 const TodoContext = createContext();
@@ -150,6 +160,9 @@ function useTodos() {
 ```
 
 ### Zustand (Lightweight Alternative)
+
+Minimal state management library with simple API and no boilerplate, offering Redux-like capabilities without the complexity.
+
 ```javascript
 import create from 'zustand';
 import { devtools, persist } from 'zustand/middleware';
@@ -194,6 +207,9 @@ function UserList() {
 ```
 
 ### Recoil (Atom-based State)
+
+Facebook's experimental state library using atoms and selectors for granular, composable state management with automatic dependency tracking.
+
 ```javascript
 import { atom, selector, useRecoilState, useRecoilValue } from 'recoil';
 
@@ -251,6 +267,8 @@ function UserList() {
 ```
 
 ## Interview Questions
+
+Common questions about state management patterns, libraries, and best practices for technical interviews.
 
 **Q: When would you choose Redux over Context API?**
 A: Use Redux when:
@@ -319,7 +337,11 @@ function UserProvider({ children }) {
 
 ## State Normalization
 
+Structuring nested data in a flat format to improve performance, prevent duplication, and simplify updates.
+
 ### Normalized State Shape
+
+Flat data structure using lookup tables instead of nested objects for efficient access and updates.
 ```javascript
 // Instead of nested data
 const badState = {
@@ -370,6 +392,8 @@ const normalizedData = normalize(apiResponse, [post]);
 ```
 
 ## Best Practices
+
+Guidelines for organizing, optimizing, and maintaining state management in production applications.
 
 ✅ **State Organization**
 - Keep state as local as possible

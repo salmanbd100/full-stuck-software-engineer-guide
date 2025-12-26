@@ -5,20 +5,24 @@ Real-time features enable instant data synchronization between server and client
 
 ## Technologies Comparison
 
+Comparison of different real-time communication technologies to help choose the right approach based on requirements.
+
 ### Communication Protocols
 
 | Protocol | Bi-directional | Full-duplex | Browser Support | Use Case |
 |----------|---------------|-------------|-----------------|----------|
 | WebSocket | Yes | Yes | Excellent | Chat, gaming, collaboration |
-| SSE | No (serveríclient) | No | Good | Notifications, feeds |
+| SSE | No (serverÔøΩclient) | No | Good | Notifications, feeds |
 | Long Polling | No | No | Universal | Fallback, simple updates |
 | HTTP/2 Server Push | No | No | Limited | Asset optimization |
 
 ## WebSockets
 
-Persistent bidirectional communication channel over a single TCP connection.
+Full-duplex communication protocol enabling persistent, bidirectional connections for low-latency real-time data exchange.
 
 ### Basic Implementation
+
+Client-side WebSocket class with automatic reconnection and exponential backoff for production reliability.
 
 ```javascript
 // Client-side WebSocket
@@ -128,6 +132,8 @@ wsClient.send('message', { text: 'Hello!' });
 
 ### React WebSocket Hook
 
+Custom React hook encapsulating WebSocket connection lifecycle and event handling for reusable real-time functionality.
+
 ```javascript
 import { useEffect, useRef, useCallback } from 'react';
 
@@ -214,6 +220,8 @@ function ChatRoom({ roomId }) {
 ```
 
 ### Server Implementation (Node.js)
+
+Node.js server handling multiple WebSocket connections with heartbeat mechanism for detecting broken connections.
 
 ```javascript
 // Using ws library
@@ -323,9 +331,11 @@ wss.on('close', () => {
 
 ## Server-Sent Events (SSE)
 
-Unidirectional communication from server to client over HTTP.
+Lightweight unidirectional protocol for server-to-client real-time updates using standard HTTP connections.
 
 ### Client Implementation
+
+SSE client wrapper providing event subscription and automatic reconnection with minimal browser API complexity.
 
 ```javascript
 class SSEClient {
@@ -403,6 +413,8 @@ sseClient.on('stock-update', (stock) => {
 
 ### React SSE Hook
 
+React hook for consuming server-sent events with automatic cleanup and state management.
+
 ```javascript
 import { useEffect, useState } from 'react';
 
@@ -465,6 +477,8 @@ function StockTicker() {
 
 ### Server Implementation (Express)
 
+Express server streaming events to clients with proper SSE headers and connection management.
+
 ```javascript
 const express = require('express');
 const app = express();
@@ -525,7 +539,7 @@ app.listen(3000);
 
 ## Long Polling
 
-Simulates real-time by repeatedly requesting updates.
+Fallback technique simulating real-time updates through sequential HTTP requests with server-side waiting.
 
 ```javascript
 class LongPollingClient {
@@ -605,7 +619,7 @@ app.get('/api/poll', async (req, res) => {
 
 ## Socket.IO
 
-High-level library built on WebSocket with fallbacks.
+Popular real-time library providing WebSocket-like API with automatic fallbacks and enhanced features like rooms and namespaces.
 
 ```javascript
 // Client
@@ -682,7 +696,11 @@ server.listen(3000);
 
 ## Real-Time Use Cases
 
+Practical implementations of real-time features for common application scenarios like chat, notifications, and collaboration.
+
 ### Live Chat
+
+Complete chat room implementation with WebSocket connections, message history, and user presence tracking.
 
 ```javascript
 // React chat component
@@ -749,6 +767,8 @@ function ChatRoom({ roomId }) {
 
 ### Live Notifications
 
+Real-time notification center using SSE to push updates and browser notifications for desktop alerts.
+
 ```javascript
 function NotificationCenter() {
   const [notifications, setNotifications] = useState([]);
@@ -788,6 +808,8 @@ function NotificationCenter() {
 ```
 
 ### Collaborative Editing
+
+Google Docs-style collaborative editor using operational transforms to merge concurrent edits from multiple users.
 
 ```javascript
 // Operational Transform for collaborative editing
@@ -913,4 +935,4 @@ A:
 - Always handle reconnection and error cases
 
 ---
-[ê Back to SystemDesign](../README.md)
+[ÔøΩ Back to SystemDesign](../README.md)

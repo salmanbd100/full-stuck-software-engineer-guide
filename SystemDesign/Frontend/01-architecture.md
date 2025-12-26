@@ -5,7 +5,11 @@ Architectural patterns for building scalable frontend applications.
 
 ## Core Patterns
 
+Fundamental architectural patterns that form the foundation of frontend application design.
+
 ### MVC (Model-View-Controller)
+
+Traditional pattern separating data (Model), presentation (View), and control logic (Controller).
 ```javascript
 // Model
 class UserModel {
@@ -47,6 +51,9 @@ class UserController {
 ```
 
 ### Component-Based Architecture
+
+Modular approach building UIs from reusable, self-contained components with encapsulated logic and styling.
+
 ```jsx
 // Atomic Design Pattern
 // Atoms
@@ -77,6 +84,9 @@ const Header = ({ onSearch, user }) => (
 ```
 
 ### Micro-Frontend Architecture
+
+Architectural style splitting frontend monoliths into smaller, independently deployable applications.
+
 ```javascript
 // Container Application
 import { registerApplication, start } from 'single-spa';
@@ -97,6 +107,9 @@ start();
 ```
 
 ### Layered Architecture
+
+Hierarchical organization separating presentation, business logic, and data access into distinct layers.
+
 ```
 ┌─────────────────────────────────────┐
 │     Presentation Layer (UI)         │
@@ -121,6 +134,8 @@ start();
 ```
 
 ## Interview Questions
+
+Common architecture-related questions asked in frontend system design interviews with detailed answers.
 
 **Q: What is the difference between MVC and MVVM patterns?**
 A: MVC (Model-View-Controller) separates data (Model), UI (View), and logic (Controller). The Controller handles user input and updates both Model and View. MVVM (Model-View-ViewModel) uses data binding between View and ViewModel, where ViewModel exposes Model data to View. MVVM enables two-way data binding and is more testable. Example:
@@ -183,7 +198,11 @@ function NestedComponent() {
 
 ## Architectural Patterns
 
+Advanced patterns for managing application state, data flow, and dependency organization.
+
 ### Flux Architecture
+
+Unidirectional data flow pattern with Actions, Dispatcher, Stores, and Views for predictable state management.
 ```javascript
 // Action
 const addTodo = (text) => ({
@@ -225,6 +244,9 @@ function TodoList() {
 ```
 
 ### Clean Architecture
+
+Dependency rule-based architecture organizing code in concentric layers with business logic at the center.
+
 ```typescript
 // Domain Layer (Entities)
 interface User {
@@ -273,6 +295,8 @@ function LoginPage() {
 
 ## Best Practices
 
+Guidelines and principles for building maintainable, scalable, and performant frontend architectures.
+
 ✅ **Separation of Concerns**
 - Keep UI, business logic, and data access separate
 - Use presentational and container components
@@ -301,7 +325,11 @@ function LoginPage() {
 
 ## Design Patterns
 
+Reusable solutions to common problems in React and component-based architectures.
+
 ### Presentational vs Container Components
+
+Separation pattern dividing components into stateless UI (presentational) and stateful logic (container) components.
 ```jsx
 // Presentational Component (Dumb)
 const UserCard = ({ user, onEdit }) => (
@@ -330,6 +358,9 @@ const UserCardContainer = ({ userId }) => {
 ```
 
 ### Higher-Order Components (HOC)
+
+Function that takes a component and returns a new component with additional props or behavior.
+
 ```jsx
 function withAuth(Component) {
   return function AuthenticatedComponent(props) {
@@ -346,6 +377,9 @@ const ProtectedPage = withAuth(Dashboard);
 ```
 
 ### Render Props Pattern
+
+Pattern using a function prop to share code and logic between components through rendering.
+
 ```jsx
 class DataFetcher extends React.Component {
   state = { data: null, loading: true };

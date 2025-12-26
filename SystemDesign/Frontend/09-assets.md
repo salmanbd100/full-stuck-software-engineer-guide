@@ -5,6 +5,8 @@ Efficient asset management is critical for web performance. Images, videos, font
 
 ## Image Optimization
 
+Techniques for reducing image file sizes while maintaining quality to improve page load performance and user experience.
+
 ### Modern Image Formats
 
 Choosing the right image format significantly impacts file size and quality.
@@ -30,7 +32,7 @@ Choosing the right image format significantly impacts file size and quality.
 
 ### Responsive Images
 
-Serve different image sizes based on device.
+Delivering appropriately sized images based on device screen size and resolution using srcset and sizes attributes. Serve different image sizes based on device.
 
 ```html
 <!-- Using srcset for different resolutions -->
@@ -80,7 +82,7 @@ Serve different image sizes based on device.
 
 ### Lazy Loading
 
-Defer loading offscreen images.
+Delaying image loading until they're needed (near viewport) to reduce initial page load time and bandwidth. Defer loading offscreen images.
 
 ```html
 <!-- Native lazy loading -->
@@ -110,7 +112,7 @@ document.querySelectorAll('img[data-src]').forEach(img => {
 
 ### Progressive Image Loading
 
-Show low-quality placeholder while loading high-quality image.
+Displaying blurred low-resolution placeholders that transition to high-quality images for better perceived performance. Show low-quality placeholder while loading high-quality image.
 
 ```jsx
 // React progressive image component
@@ -157,6 +159,8 @@ function BlurImage({ src, alt }) {
 ```
 
 ### Image CDN and Optimization
+
+Cloud-based image optimization services providing automatic format conversion, resizing, and global CDN delivery.
 
 ```javascript
 // Next.js Image component (automatic optimization)
@@ -218,7 +222,11 @@ function ImgixImage({ src, params = {} }) {
 
 ## Video Optimization
 
+Strategies for delivering video content efficiently with adaptive bitrate streaming and lazy loading techniques.
+
 ### Adaptive Streaming
+
+Dynamic video quality adjustment based on user's bandwidth using protocols like HLS or DASH for smooth playback.
 
 ```html
 <!-- HLS for adaptive bitrate streaming -->
@@ -250,6 +258,8 @@ function ImgixImage({ src, params = {} }) {
 ```
 
 ### Lazy Loading Videos
+
+Deferring video loading until playback is initiated or viewport intersection to save bandwidth and improve performance.
 
 ```html
 <!-- Poster image until play -->
@@ -296,6 +306,8 @@ document.querySelectorAll('video[data-src]').forEach(video => {
 
 ### Video Formats
 
+Providing multiple video formats for cross-browser compatibility with fallback options for older browsers.
+
 ```html
 <!-- Multiple formats for browser compatibility -->
 <video controls>
@@ -308,7 +320,11 @@ document.querySelectorAll('video[data-src]').forEach(video => {
 
 ## Font Optimization
 
+Techniques for loading web fonts efficiently while preventing layout shifts and invisible text flashes.
+
 ### Font Loading Strategies
+
+Using font-display CSS property to control font rendering behavior during loading for optimal user experience.
 
 ```css
 /* font-display values */
@@ -341,7 +357,7 @@ document.querySelectorAll('video[data-src]').forEach(video => {
 
 ### Font Subsetting
 
-Only include characters you need.
+Reducing font file size by including only the specific characters and glyphs needed for your content. Only include characters you need.
 
 ```bash
 # Using glyphhanger
@@ -353,7 +369,7 @@ npx glyphhanger --subset=font.woff2 --whitelist="Hello World"
 
 ### Variable Fonts
 
-Single font file with multiple weights/styles.
+Modern font technology allowing multiple weights and styles in a single file for reduced file count and flexibility. Single font file with multiple weights/styles.
 
 ```css
 @font-face {
@@ -370,6 +386,8 @@ body {
 ```
 
 ### Preloading Fonts
+
+Using resource hints to load critical fonts early in page load for faster text rendering.
 
 ```html
 <!-- Preload critical fonts -->
@@ -399,7 +417,11 @@ body {
 
 ## Icon Management
 
+Different approaches for implementing icons including SVG sprites, icon fonts, and component libraries.
+
 ### Icon Strategies
+
+Comparison of various icon implementation methods from SVG sprites to dynamic component imports.
 
 ```jsx
 // 1. SVG Sprite
@@ -462,6 +484,8 @@ function Icon({ name, ...props }) {
 
 ## CSS Optimization
 
+Reducing CSS bundle size and eliminating render-blocking stylesheets for faster page rendering.
+
 ### Critical CSS
 
 Inline above-the-fold CSS to eliminate render-blocking.
@@ -492,6 +516,8 @@ Inline above-the-fold CSS to eliminate render-blocking.
 
 ### CSS Minification and Purging
 
+Removing unused CSS and compressing remaining styles to minimize stylesheet size with PostCSS tools.
+
 ```javascript
 // PostCSS configuration
 module.exports = {
@@ -517,7 +543,11 @@ module.exports = {
 
 ## Asset Bundling
 
+Webpack strategies for splitting code into optimal chunks and managing bundle sizes for production.
+
 ### Code Splitting
+
+Breaking large bundles into smaller chunks loaded on-demand for faster initial page loads.
 
 ```javascript
 // Webpack code splitting
@@ -554,6 +584,8 @@ const HeavyComponent = lazy(() => import('./HeavyComponent'));
 
 ### Asset Hashing
 
+Content-based hash filenames enabling long-term caching with automatic cache busting on updates.
+
 ```javascript
 // Webpack output with content hash
 output: {
@@ -565,7 +597,11 @@ output: {
 
 ## CDN Strategy
 
+Leveraging content delivery networks to serve assets from edge locations closer to users globally.
+
 ### Static Asset Hosting
+
+Hosting static files on CDN for reduced latency and improved global performance.
 
 ```html
 <!-- Host static assets on CDN -->
@@ -575,6 +611,8 @@ output: {
 ```
 
 ### Cache Headers
+
+Configuring HTTP cache headers for optimal browser and CDN caching behavior.
 
 ```javascript
 // Express.js
@@ -591,6 +629,8 @@ location ~* \.(jpg|jpeg|png|gif|ico|css|js|woff2)$ {
 ```
 
 ### CDN Providers
+
+Popular CDN services offering global distribution, performance optimization, and security features.
 
 - **Cloudflare**: Global CDN, free tier, DDoS protection
 - **CloudFront**: AWS CDN, integrates with S3
@@ -697,4 +737,4 @@ This shows system font immediately, swaps when custom font loads.
 - Proper asset management is critical for Core Web Vitals
 
 ---
-[ê Back to SystemDesign](../README.md)
+[ÔøΩ Back to SystemDesign](../README.md)

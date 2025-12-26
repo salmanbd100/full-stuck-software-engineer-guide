@@ -5,6 +5,8 @@ Monitoring enables proactive issue detection, performance optimization, and unde
 
 ## Three Pillars of Observability
 
+Comprehensive observability requires collecting metrics, logs, and traces to understand system behavior and diagnose issues.
+
 ### 1. Metrics
 
 Quantitative measurements over time.
@@ -271,7 +273,11 @@ async function fetchUserData(userId) {
 
 ## Error Tracking
 
+Capturing and reporting application errors with context for debugging and monitoring production issues.
+
 ### Error Boundaries (React)
+
+React component lifecycle method for catching errors in component tree and displaying fallback UI.
 
 ```jsx
 class ErrorBoundary extends React.Component {
@@ -328,6 +334,8 @@ class ErrorBoundary extends React.Component {
 ```
 
 ### Global Error Handling
+
+Window-level error listeners to catch unhandled errors and promise rejections across the application.
 
 ```javascript
 // Catch unhandled errors
@@ -462,7 +470,11 @@ Sentry.setContext('character', {
 
 ## Performance Monitoring
 
+Tracking real user experience metrics and custom performance marks to identify optimization opportunities.
+
 ### Real User Monitoring (RUM)
+
+Collecting actual user interaction data and performance metrics from production environments.
 
 ```javascript
 // Track user interactions
@@ -529,6 +541,8 @@ new UserMonitoring();
 
 ### Custom Performance Marks
 
+Using Performance API to mark and measure specific application milestones and user interactions.
+
 ```javascript
 // Mark important events
 performance.mark('page-interactive');
@@ -566,7 +580,11 @@ function ExpensiveComponent() {
 
 ## Dashboards and Alerting
 
+Building real-time dashboards and automated alerts to monitor application health and respond to incidents.
+
 ### Creating Metrics Dashboard
+
+Aggregating and visualizing metrics with percentiles and thresholds for monitoring Core Web Vitals.
 
 ```javascript
 // Backend aggregation endpoint
@@ -660,6 +678,8 @@ function MetricsDashboard() {
 
 ### Alerting
 
+Automated monitoring checks with threshold-based notifications to Slack or email for critical issues.
+
 ```javascript
 // Server-side alert checker
 async function checkAlerts() {
@@ -708,6 +728,8 @@ async function sendAlert(alert) {
 ```
 
 ## Browser DevTools Integration
+
+Integrating custom performance tracking with browser DevTools for enhanced debugging in development.
 
 ```javascript
 // Custom performance panel
@@ -838,4 +860,4 @@ if (Math.random() < sampleRate) {
 - Always respect user privacy in monitoring
 
 ---
-[ Back to SystemDesign](../README.md)
+[ï¿½ Back to SystemDesign](../README.md)

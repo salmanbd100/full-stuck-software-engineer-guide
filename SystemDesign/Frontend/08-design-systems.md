@@ -5,6 +5,8 @@ A design system is a collection of reusable components, guided by clear standard
 
 ## Components of a Design System
 
+Core building blocks including design tokens, component libraries, and documentation that form a complete design system.
+
 ### 1. Design Tokens
 
 Atomic design decisions stored as data (color, spacing, typography, etc.).
@@ -393,6 +395,8 @@ export const AllVariants = () => (
 
 ## Atomic Design Methodology
 
+Hierarchical approach to component organization from smallest elements to complete pages for systematic UI development.
+
 Breaking down components into atoms, molecules, organisms, templates, and pages.
 
 ### Atoms
@@ -531,6 +535,8 @@ export function ProductsPage() {
 
 ## Theming
 
+Dynamic styling system enabling multiple visual themes like light/dark modes and brand variations across the design system.
+
 Support multiple themes (light/dark mode, brand variations).
 
 ```jsx
@@ -596,6 +602,8 @@ function MyComponent() {
 ```
 
 ## Versioning and Publishing
+
+Strategy for distributing design system as npm packages with semantic versioning and clear change management.
 
 ### Package Structure
 
@@ -668,7 +676,7 @@ function MyComponent() {
 ## [2.0.0] - 2023-12-01
 ### Breaking Changes
 - Removed deprecated `LegacyButton` component
-- Changed `Button` size prop values: `small/medium/large` í `sm/md/lg`
+- Changed `Button` size prop values: `small/medium/large` ÔøΩ `sm/md/lg`
 - Updated minimum React version to 18.0.0
 
 ### Added
@@ -677,6 +685,8 @@ function MyComponent() {
 ```
 
 ## Accessibility
+
+Built-in WCAG compliance through proper ARIA attributes, keyboard navigation, and semantic HTML in all components.
 
 Ensuring components are accessible (WCAG compliance).
 
@@ -764,6 +774,8 @@ export function FormField({ label, id, error, required, children }) {
 ```
 
 ## Testing Strategy
+
+Comprehensive testing approach including unit tests, visual regression, and accessibility testing for design system components.
 
 ```javascript
 // Button.test.jsx
@@ -893,4 +905,4 @@ A: Approaches:
 - Clear governance and contribution process critical for scale
 
 ---
-[ê Back to SystemDesign](../README.md)
+[ÔøΩ Back to SystemDesign](../README.md)

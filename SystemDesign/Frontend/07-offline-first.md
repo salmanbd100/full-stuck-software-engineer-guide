@@ -132,6 +132,8 @@ if ('serviceWorker' in navigator) {
 
 ## Caching Strategies
 
+Different caching approaches optimized for various content types, balancing freshness with offline availability.
+
 ### 1. Cache First (Cache Falling Back to Network)
 
 Best for static assets that don't change often.
@@ -155,7 +157,7 @@ self.addEventListener('fetch', (event) => {
 
 ### 2. Network First (Network Falling Back to Cache)
 
-Best for dynamic content where freshness is important.
+Prioritizes fresh data from the network, using cached version only when offline for dynamic content. Best for dynamic content where freshness is important.
 
 ```javascript
 self.addEventListener('fetch', (event) => {
@@ -181,7 +183,7 @@ self.addEventListener('fetch', (event) => {
 
 ### 3. Stale While Revalidate
 
-Serve from cache immediately, update cache in background.
+Serves cached content immediately for fast response while simultaneously fetching fresh data in the background. Serve from cache immediately, update cache in background.
 
 ```javascript
 self.addEventListener('fetch', (event) => {
@@ -204,7 +206,7 @@ self.addEventListener('fetch', (event) => {
 
 ### 4. Network Only
 
-Always fetch from network (e.g., analytics).
+Never uses cache, always fetching fresh data from network for real-time or sensitive content. Always fetch from network (e.g., analytics).
 
 ```javascript
 self.addEventListener('fetch', (event) => {
@@ -217,7 +219,7 @@ self.addEventListener('fetch', (event) => {
 
 ### 5. Cache Only
 
-Only serve from cache (pre-cached assets).
+Serves content exclusively from cache, ignoring network completely for maximum offline reliability. Only serve from cache (pre-cached assets).
 
 ```javascript
 self.addEventListener('fetch', (event) => {
@@ -227,7 +229,11 @@ self.addEventListener('fetch', (event) => {
 
 ## Offline Data Management
 
+Strategies for storing and managing application data locally for offline access and synchronization.
+
 ### IndexedDB
+
+Browser-based NoSQL database for storing large amounts of structured data with indexing and transactions.
 
 Low-level API for client-side storage of structured data.
 
@@ -329,6 +335,8 @@ const deleteTodo = async (id) => {
 
 ### Wrapper Libraries
 
+Higher-level libraries simplifying IndexedDB operations with cleaner APIs and better developer experience.
+
 #### Dexie.js (IndexedDB Wrapper)
 
 ```javascript
@@ -402,7 +410,11 @@ await localforage.iterate((value, key) => {
 
 ## Sync Strategies
 
+Techniques for synchronizing local and remote data to keep offline changes in sync with the server.
+
 ### Background Sync
+
+Service Worker API enabling deferred network requests that retry automatically until successful, even after page close.
 
 Defer actions until user has connectivity.
 
@@ -577,7 +589,7 @@ function TodoList() {
   return (
     <div>
       <div className="sync-status">
-        {!isOnline && '† Offline'}
+        {!isOnline && 'ÔøΩ Offline'}
         {isSyncing && '= Syncing...'}
         {isOnline && !isSyncing && ' Synced'}
       </div>
@@ -815,4 +827,4 @@ A:
 - PWAs combine offline capabilities with app-like experience
 
 ---
-[ê Back to SystemDesign](../README.md)
+[ÔøΩ Back to SystemDesign](../README.md)
