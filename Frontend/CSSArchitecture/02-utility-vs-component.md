@@ -169,7 +169,7 @@ A production-ready product card showcases Tailwind's power for complex UI compon
         <!-- Rating -->
         <div class="flex items-center gap-2 mb-6">
             <div class="flex text-yellow-400">
-                <span></span><span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span><span></span>
             </div>
             <span class="text-sm text-gray-600">(128 reviews)</span>
         </div>
@@ -894,34 +894,34 @@ Choosing between utility-first and component-first architectures depends on proj
 
 ```
 Utility-First (Tailwind) if:
- Rapid development is priority
- Team comfortable with long class names
- Small CSS file size critical
- Design consistency important
- Building dashboards/MVPs
- Starting new project
+ Rapid development is priority
+ Team comfortable with long class names
+ Small CSS file size critical
+ Design consistency important
+ Building dashboards/MVPs
+ Starting new project
 
 Component-First (CSS Modules) if:
- Scalability is priority
- Static CSS is okay
- Large application
- Multiple developers
- Design system needed
- Building reusable library
+ Scalability is priority
+ Static CSS is okay
+ Large application
+ Multiple developers
+ Design system needed
+ Building reusable library
 
 CSS-in-JS (styled-components) if:
- Heavy React component logic
- Dynamic styling based on props
- Full TypeScript support needed
- Team comfortable with JS-in-CSS
- Complex component variations
- Building design system
+ Heavy React component logic
+ Dynamic styling based on props
+ Full TypeScript support needed
+ Team comfortable with JS-in-CSS
+ Complex component variations
+ Building design system
 
 Hybrid if:
- Want benefits of both approaches
- Building large application
- Long-term maintenance critical
- Team needs flexibility
+ Want benefits of both approaches
+ Building large application
+ Long-term maintenance critical
+ Team needs flexibility
 ```
 
 ---
@@ -1428,16 +1428,16 @@ Combine approaches when each has unique advantages:
 
 **Scenario 1: Large application with multiple teams**
 ```
-  UI components use CSS Modules (encapsulation)
-  Utilities use Tailwind (rapid styling)
-  Complex interactive components use styled-components (theming)
+ UI components use CSS Modules (encapsulation)
+ Utilities use Tailwind (rapid styling)
+ Complex interactive components use styled-components (theming)
 ```
 
 **Scenario 2: Design system with multiple products**
 ```
-  Core design tokens in Tailwind config
-  Component library uses CSS Modules + styled-components
-  Applications add custom Tailwind utilities as needed
+ Core design tokens in Tailwind config
+ Component library uses CSS Modules + styled-components
+ Applications add custom Tailwind utilities as needed
 ```
 
 **Scenario 3: Migrating legacy CSS**
@@ -1497,7 +1497,7 @@ const ProductPage = ({ product }) => {
                             <div className="flex items-center gap-4 mb-6">
                                 <div className="flex text-yellow-400">
                                     {[...Array(5)].map((_, i) => (
-                                        <span key={i}></span>
+                                        <span key={i}></span>
                                     ))}
                                 </div>
                                 <span className="text-gray-600">
@@ -1529,7 +1529,7 @@ const ProductPage = ({ product }) => {
                             <ul className="space-y-2 mb-8">
                                 {product.features.map((feature, idx) => (
                                     <li key={idx} className="flex items-center gap-2 text-gray-700">
-                                        <span className="text-green-500 font-bold"></span>
+                                        <span className="text-green-500 font-bold"></span>
                                         {feature}
                                     </li>
                                 ))}
@@ -1544,7 +1544,7 @@ const ProductPage = ({ product }) => {
                                         onClick={() => setQuantity(Math.max(1, quantity - 1))}
                                         className="px-4 py-2 hover:bg-gray-100"
                                     >
-                                        
+                                        
                                     </button>
                                     <span className="px-6 py-2">{quantity}</span>
                                     <button
@@ -1577,7 +1577,7 @@ const ProductPage = ({ product }) => {
                                 </div>
                                 <div className="flex text-yellow-400 mb-2">
                                     {[...Array(review.rating)].map((_, i) => (
-                                        <span key={i}></span>
+                                        <span key={i}></span>
                                     ))}
                                 </div>
                                 <p className="text-gray-700">{review.text}</p>
@@ -1713,7 +1713,7 @@ export const FeaturesList = styled.ul`
         color: #374151;
 
         &::before {
-            content: '';
+            content: '';
             color: #10b981;
             font-weight: 700;
         }
@@ -1774,7 +1774,7 @@ export const ProductPage = ({ product }) => {
                             <Title>{product.name}</Title>
 
                             <Rating>
-                                <Stars></Stars>
+                                <Stars></Stars>
                                 <span>{product.reviews} reviews</span>
                             </Rating>
 

@@ -553,27 +553,27 @@ A typical SMACSS file structure mirrors the five categories, making it easy to l
 
 ```
 css/
-   base/
-      reset.css
-      typography.css
-      forms.css
-   layout/
-      header.css
-      footer.css
-      sidebar.css
-      main.css
-   modules/
-      button.css
-      card.css
-      navigation.css
-      modal.css
-      form-group.css
-   state/
-      states.css
-   theme/
-      light.css
-      dark.css
-   main.css (imports all)
+ base/
+    reset.css
+    typography.css
+    forms.css
+ layout/
+    header.css
+    footer.css
+    sidebar.css
+    main.css
+ modules/
+    button.css
+    card.css
+    navigation.css
+    modal.css
+    form-group.css
+ state/
+    states.css
+ theme/
+    light.css
+    dark.css
+ main.css (imports all)
 ```
 
 ### SMACSS Example: Complete Form Component
@@ -600,7 +600,7 @@ This form component demonstrates how SMACSS categories work together, combining 
             type="password"
             id="password"
             class="mod-form-input"
-            placeholder=""""""""""
+            placeholder="Enter password"
         >
     </div>
 
@@ -987,33 +987,33 @@ A well-organized ITCSS project uses numbered folders to enforce import order, en
 
 ```
 scss/
-   1-settings/
-      variables.scss
-      config.scss
-   2-tools/
-      mixins.scss
-      functions.scss
-   3-generic/
-      reset.scss
-      normalize.scss
-   4-elements/
-      headings.scss
-      links.scss
-      buttons.scss
-   5-objects/
-      container.scss
-      grid.scss
-      list.scss
-   6-components/
-      button.scss
-      card.scss
-      navigation.scss
-      modal.scss
-   7-utilities/
-      spacing.scss
-      display.scss
-      text.scss
-   main.scss (imports in order)
+ 1-settings/
+    variables.scss
+    config.scss
+ 2-tools/
+    mixins.scss
+    functions.scss
+ 3-generic/
+    reset.scss
+    normalize.scss
+ 4-elements/
+    headings.scss
+    links.scss
+    buttons.scss
+ 5-objects/
+    container.scss
+    grid.scss
+    list.scss
+ 6-components/
+    button.scss
+    card.scss
+    navigation.scss
+    modal.scss
+ 7-utilities/
+    spacing.scss
+    display.scss
+    text.scss
+ main.scss (imports in order)
 ```
 
 ### ITCSS Example: Complete Page
@@ -1436,13 +1436,13 @@ For large applications, I would:
 **Example structure:**
 ```
 scss/
-   settings/          (variables, config)
-   tools/            (mixins, functions)
-   generic/          (resets, normalize)
-   elements/         (HTML defaults)
-   objects/          (layout patterns)
-   components/       (UI components)
-   utilities/        (single-purpose utilities)
+ settings/          (variables, config)
+ tools/            (mixins, functions)
+ generic/          (resets, normalize)
+ elements/         (HTML defaults)
+ objects/          (layout patterns)
+ components/       (UI components)
+ utilities/        (single-purpose utilities)
 ```
 
 ---
@@ -1666,11 +1666,11 @@ Consider four factors:
 **Decision Tree:**
 ```
 Start here
-  New team learning CSS? � BEM
-  Small-medium growing app? � SMACSS
-  Large enterprise app? � ITCSS
-  High traffic site? � OOCSS
-  Unsure? � Start with BEM, upgrade to SMACSS
+ New team learning CSS? � BEM
+ Small-medium growing app? � SMACSS
+ Large enterprise app? � ITCSS
+ High traffic site? � OOCSS
+ Unsure? � Start with BEM, upgrade to SMACSS
 ```
 
 ---

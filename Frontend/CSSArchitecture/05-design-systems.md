@@ -317,32 +317,32 @@ export const Card = ({ title, actions, children }) => {
 ```bash
 # Project structure
 design-system/
-   src/
-      tokens/
-         colors.ts
-         spacing.ts
-         typography.ts
-         index.ts
-      components/
-         Button/
-            Button.tsx
-            Button.test.tsx
-            Button.stories.tsx
-            Button.module.css
-         Card/
-         Input/
-         index.ts
-      hooks/
-         useMediaQuery.ts
-         useFocus.ts
-         index.ts
-      index.ts
-   .storybook/
-      main.ts
-      preview.ts
-      manager.ts
-   package.json
-   README.md
+ src/
+    tokens/
+       colors.ts
+       spacing.ts
+       typography.ts
+       index.ts
+    components/
+       Button/
+          Button.tsx
+          Button.test.tsx
+          Button.stories.tsx
+          Button.module.css
+       Card/
+       Input/
+       index.ts
+    hooks/
+       useMediaQuery.ts
+       useFocus.ts
+       index.ts
+    index.ts
+ .storybook/
+    main.ts
+    preview.ts
+    manager.ts
+ package.json
+ README.md
 ```
 
 ### Phase 3: Storybook Setup
@@ -1421,19 +1421,19 @@ Use a centralized token management system like Style Dictionary to generate plat
 
 ```
 1. Define tokens in JSON
-     tokens/colors.json, tokens/spacing.json, etc.
+    tokens/colors.json, tokens/spacing.json, etc.
 
 2. Create Style Dictionary config
-     Specifies transforms and outputs
+    Specifies transforms and outputs
 
 3. Generate platform-specific code
-     CSS variables (web)
-     Swift (iOS)
-     Kotlin (Android)
-     JavaScript modules
+    CSS variables (web)
+    Swift (iOS)
+    Kotlin (Android)
+    JavaScript modules
 
 4. Version and distribute
-     npm packages, version control
+    npm packages, version control
 ```
 
 **Implementation:**
@@ -1656,14 +1656,14 @@ Good documentation is critical for design system adoption.
 
 ```
 Component Library          Design System
-  Code                     Components
-  TypeScript               Design Tokens
-  Some docs                Documentation
-                            Guidelines
-                            Figma library
-                            Storybook
-                            Processes
-                            Governance
+ Code                    Components
+ TypeScript              Design Tokens
+ Some docs               Documentation
+                           Guidelines
+                           Figma library
+                           Storybook
+                           Processes
+                           Governance
 ```
 
 **Analogy:**
@@ -1844,7 +1844,7 @@ A well-designed design system provides:
 - Strong team adoption
 - Regular updates and versioning
 
-Design systems are not just codethey're living products that evolve with your organization's needs and your users' expectations.
+Design systems are not just codethey're living products that evolve with your organization's needs and your users' expectations.
 
 ---
 
