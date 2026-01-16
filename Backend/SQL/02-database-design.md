@@ -1,8 +1,23 @@
 # Database Design
 
-## Overview
+## 💡 **Overview**
 
-Database design is the process of organizing data according to a database model. Good database design is crucial for performance, data integrity, and maintainability. This is a core topic in backend interviews.
+Database design is the process of structuring data to minimize redundancy, ensure data integrity, and optimize performance.
+
+**What You'll Learn:**
+- Normalization (1NF, 2NF, 3NF) and when to denormalize
+- Entity relationships (One-to-One, One-to-Many, Many-to-Many)
+- Data types and constraints
+- Real-world schema design patterns
+- Database design best practices
+
+**Why This Matters:**
+- Good design prevents data anomalies and ensures consistency
+- Proper normalization reduces redundancy and saves storage
+- Well-designed schemas improve query performance
+- Database design is heavily tested in technical interviews
+
+> **Key Insight:** Database design is about finding the right balance between normalization (data integrity) and denormalization (performance).
 
 ## Normalization
 
