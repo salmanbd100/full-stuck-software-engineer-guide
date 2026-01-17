@@ -17,6 +17,10 @@ SQL (Structured Query Language) is the universal language for communicating with
 - SQL knowledge is tested in virtually every backend interview
 - Mastering SQL fundamentals enables efficient data manipulation and retrieval
 
+![SQL Fundamentals Overview](./images/sql-fundamentals-overview.png)
+
+*Figure: Visual overview of SQL fundamentals - covering statements, queries, JOINs, subqueries, and execution order*
+
 ## Basic SQL Commands
 
 ### 💡 **SELECT Statement**
